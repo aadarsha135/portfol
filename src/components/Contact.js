@@ -3,7 +3,6 @@ import ReCAPTCHA from "react-google-recaptcha";
 import { Mail, Linkedin, Github, Send, MessageCircle, User, AtSign } from "lucide-react";
 
 const Contact = () => {
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [showCaptcha, setShowCaptcha] = useState(false);
   const recaptchaRef = useRef();
 
@@ -31,32 +30,11 @@ const Contact = () => {
     },
   ];
 
-  // First click shows captcha
-  const handleFakeSubmit = (e) => {
-    e.preventDefault();
-    setShowCaptcha(true);
-  };
-
-  // After captcha is solved, submit form silently
-  const handleCaptchaSuccess = async (value) => {
-    if (value) {
-      setIsSubmitting(true);
-      const form = document.getElementById("realForm");
-      const formData = new FormData(form);
-
-      try {
-        await fetch("https://formsubmit.co/ajax/9daadf95f19d74836f94790f3b1e3d75", {
-          method: "POST",
-          body: formData,
-        });
-        form.reset();
-      } catch (error) {
-        console.error(error);
-      }
-
-      setIsSubmitting(false);
-      setShowCaptcha(false);
-      recaptchaRef.current.reset();
+  // Show captcha on first click
+  const handleSubmitClick = (e) => {
+    if (!showCaptcha) {
+      e.preventDefault();
+      setShowCaptcha(true);
     }
   };
 
@@ -120,9 +98,10 @@ const Contact = () => {
           </h3>
 
           <form
-            id="realForm"
-            className="space-y-6"
-            onSubmit={handleFakeSubmit}
+            id="contactForm"
+            action="https://formsubmit.co/9daadf95f19d74836f94790f3b1e3d75"
+            method="POST"
+            target="_blank"
           >
             <input type="hidden" name="_template" value="table" />
             <input type="hidden" name="_subject" value="New Portfolio Message" />
@@ -166,11 +145,9 @@ const Contact = () => {
 
             {/* Captcha */}
             {showCaptcha && (
-              <div className="flex justify-center">
+              <div className="flex justify-center mb-4">
                 <ReCAPTCHA
                   sitekey="6Lce3b4rAAAAAJxoY5BWZ89QNAvjs8YWS4jirVEs"
-                  onChange={handleCaptchaSuccess}
-                  ref={recaptchaRef}
                 />
               </div>
             )}
@@ -178,19 +155,10 @@ const Contact = () => {
             {/* Button */}
             <button
               type="submit"
-              disabled={isSubmitting}
-              className="w-full py-4 bg-gradient-to-r from-blue-600 to-purple-600 disabled:from-gray-400 disabled:to-gray-500 text-white font-semibold rounded-xl shadow-lg flex items-center justify-center gap-2"
+              onClick={handleSubmitClick}
+              className="w-full py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-xl shadow-lg flex items-center justify-center gap-2"
             >
-              {isSubmitting ? (
-                <>
-                  <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                  Sending...
-                </>
-              ) : showCaptcha ? (
-                "Verify Captcha"
-              ) : (
-                "Send Message"
-              )}
+              Send Message
             </button>
           </form>
         </div>
