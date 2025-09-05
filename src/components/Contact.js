@@ -4,6 +4,7 @@ import { Mail, Linkedin, Github, Send, MessageCircle, User, AtSign } from "lucid
 
 const Contact = () => {
   const [showCaptcha, setShowCaptcha] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const recaptchaRef = useRef();
 
   const contactInfo = [
@@ -36,6 +37,45 @@ const Contact = () => {
       e.preventDefault();
       setShowCaptcha(true);
     }
+  };
+
+  // Form submit handler (AJAX to FormSubmit)
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+
+    if (recaptchaRef.current) {
+      const captchaValue = recaptchaRef.current.getValue();
+      if (!captchaValue) {
+        alert("Please verify the captcha before submitting!");
+        return;
+      }
+    }
+
+    setIsSubmitting(true);
+    const form = e.target;
+    const formData = new FormData(form);
+
+    try {
+      const res = await fetch(
+        "https://formsubmit.co/ajax/9daadf95f19d74836f94790f3b1e3d75",
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
+
+      if (res.ok) {
+        form.reset();
+        setShowCaptcha(false); // hide captcha again
+        // optional: show toast/snackbar
+      } else {
+        console.error("FormSubmit error:", res.statusText);
+      }
+    } catch (err) {
+      console.error("Submission failed:", err);
+    }
+
+    setIsSubmitting(false);
   };
 
   return (
@@ -97,18 +137,13 @@ const Contact = () => {
             Send Message
           </h3>
 
-          <form
-            id="contactForm"
-            action="https://formsubmit.co/9daadf95f19d74836f94790f3b1e3d75"
-            method="POST"
-            target="_blank"
-          >
+          <form id="contactForm" onSubmit={handleFormSubmit}>
             <input type="hidden" name="_template" value="table" />
             <input type="hidden" name="_subject" value="New Portfolio Message" />
             <input type="text" name="_honey" style={{ display: "none" }} tabIndex="-1" autoComplete="off" />
 
             {/* Name */}
-            <div className="relative">
+            <div className="relative mb-4">
               <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
               <input
                 type="text"
@@ -120,7 +155,7 @@ const Contact = () => {
             </div>
 
             {/* Email */}
-            <div className="relative">
+            <div className="relative mb-4">
               <AtSign className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
               <input
                 type="email"
@@ -132,7 +167,7 @@ const Contact = () => {
             </div>
 
             {/* Message */}
-            <div className="relative">
+            <div className="relative mb-4">
               <MessageCircle className="absolute left-3 top-4 text-gray-400" size={20} />
               <textarea
                 name="message"
@@ -148,6 +183,7 @@ const Contact = () => {
               <div className="flex justify-center mb-4">
                 <ReCAPTCHA
                   sitekey="6Lce3b4rAAAAAJxoY5BWZ89QNAvjs8YWS4jirVEs"
+                  ref={recaptchaRef}
                 />
               </div>
             )}
@@ -156,9 +192,10 @@ const Contact = () => {
             <button
               type="submit"
               onClick={handleSubmitClick}
+              disabled={isSubmitting}
               className="w-full py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-xl shadow-lg flex items-center justify-center gap-2"
             >
-              Send Message
+              {isSubmitting ? "Sending..." : "Send Message"}
             </button>
           </form>
         </div>
