@@ -1,56 +1,62 @@
-import React, { useState } from 'react';
-import { Mail, Linkedin, Github, Send, MessageCircle, User, AtSign } from 'lucide-react';
+import React, { useState, useRef } from "react";
+import ReCAPTCHA from "react-google-recaptcha";
+import { Mail, Linkedin, Github, Send, MessageCircle, User, AtSign } from "lucide-react";
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
-  });
-
   const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setFormData({ name: '', email: '', message: '' });
-    }, 2000);
-  };
+  const [showCaptcha, setShowCaptcha] = useState(false);
+  const recaptchaRef = useRef();
 
   const contactInfo = [
     {
       icon: Mail,
-      label: 'Email',
-      value: 'aadarsha871@gmail.com',
-      href: 'mailto:aadarsha871@gmail.com',
-      color: 'from-blue-500 to-cyan-500'
+      label: "Email",
+      value: "achaulagain444@gmail.com",
+      href: "mailto:achaulagain444@gmail.com",
+      color: "from-blue-500 to-cyan-500",
     },
     {
       icon: Linkedin,
-      label: 'LinkedIn',
-      value: 'linkedin.com/in/aadarsha-chaulagain',
-      href: 'https://www.linkedin.com/in/aadarsha-chaulagain-648a002b9',
-      color: 'from-blue-600 to-blue-500'
+      label: "LinkedIn",
+      value: "linkedin.com/in/aadarsha-chaulagain",
+      href: "https://www.linkedin.com/in/aadarsha-chaulagain-648a002b9",
+      color: "from-blue-600 to-blue-500",
     },
     {
       icon: Github,
-      label: 'GitHub',
-      value: 'github.com/aadarsha875',
-      href: 'https://github.com/aadarsha875',
-      color: 'from-gray-700 to-gray-600'
-    }
+      label: "GitHub",
+      value: "github.com/aadarsha875",
+      href: "https://github.com/aadarsha875",
+      color: "from-gray-700 to-gray-600",
+    },
   ];
+
+  const handleFakeSubmit = (e) => {
+    e.preventDefault();
+    setShowCaptcha(true);
+  };
+
+  const handleCaptchaSuccess = async (value) => {
+    if (value) {
+      setIsSubmitting(true);
+      const form = document.getElementById("realForm");
+      const formData = new FormData(form);
+
+      try {
+        await fetch("https://formsubmit.co/ajax/achaulagain444@gmail.com", {
+          method: "POST",
+          body: formData,
+        });
+        form.reset();
+      } catch (error) {
+        console.error(error);
+      }
+
+      setIsSubmitting(false);
+      setShowCaptcha(false);
+      recaptchaRef.current.reset();
+    }
+  };
 
   return (
     <section id="contact" className="min-h-screen px-6 sm:px-8 py-20 mx-auto max-w-6xl">
@@ -68,14 +74,13 @@ const Contact = () => {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-        {/* Contact Information */}
+        {/* Contact Info */}
         <div className="space-y-8">
           <div className="bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm border border-white/20 dark:border-gray-700/20 rounded-2xl p-8">
             <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-3">
               <MessageCircle className="text-blue-500" size={28} />
               Let's Connect
             </h3>
-            
             <div className="space-y-6">
               {contactInfo.map((item, index) => {
                 const IconComponent = item.icon;
@@ -87,35 +92,20 @@ const Contact = () => {
                     rel="noopener noreferrer"
                     className="group flex items-center gap-4 p-4 rounded-xl bg-gray-50 dark:bg-gray-800/50 hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
                   >
-                    <div className={`p-3 rounded-xl bg-gradient-to-r ${item.color} shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                    <div
+                      className={`p-3 rounded-xl bg-gradient-to-r ${item.color} shadow-lg group-hover:scale-110 transition-transform duration-300`}
+                    >
                       <IconComponent className="w-6 h-6 text-white" />
                     </div>
                     <div>
                       <div className="font-medium text-gray-900 dark:text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-purple-600 transition-all duration-300">
                         {item.label}
                       </div>
-                      <div className="text-sm text-gray-600 dark:text-gray-400">
-                        {item.value}
-                      </div>
+                      <div className="text-sm text-gray-600 dark:text-gray-400">{item.value}</div>
                     </div>
                   </a>
                 );
               })}
-            </div>
-          </div>
-
-          {/* Quick Stats */}
-          <div className="bg-gradient-to-r from-blue-500/10 to-purple-500/10 backdrop-blur-sm border border-blue-200/20 dark:border-blue-700/20 rounded-2xl p-6">
-            <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Quick Response</h4>
-            <div className="grid grid-cols-2 gap-4">
-              <div className="text-center">
-                <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">24h</div>
-                <div className="text-sm text-gray-600 dark:text-gray-400">Response Time</div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold text-purple-600 dark:text-purple-400">100%</div>
-                <div className="text-sm text-gray-600 dark:text-gray-400">Response Rate</div>
-              </div>
             </div>
           </div>
         </div>
@@ -127,80 +117,77 @@ const Contact = () => {
             Send Message
           </h3>
 
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <input type="hidden" name="_captcha" value="false" />
-            <input type="hidden" name="_next" value="https://www.rajkumarchaulagain.com.np/thank-you.html" />
-            <input type="hidden" name="_honey" style={{ display: 'none' }} />
+          <form
+            id="realForm"
+            className="space-y-6"
+            onSubmit={handleFakeSubmit}
+          >
+            <input type="hidden" name="_template" value="table" />
+            <input type="hidden" name="_subject" value="New Portfolio Message" />
+            <input type="text" name="_honey" style={{ display: "none" }} tabIndex="-1" autoComplete="off" />
 
+            {/* Name */}
             <div className="relative">
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                Your Name
-              </label>
-              <div className="relative">
-                <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
-                <input
-                  type="text"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                  className="w-full pl-12 pr-4 py-3 rounded-xl bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
-                  placeholder="Enter your name"
-                />
-              </div>
+              <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
+              <input
+                type="text"
+                name="name"
+                required
+                className="w-full pl-12 pr-4 py-3 rounded-xl bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600"
+                placeholder="Enter your name"
+              />
             </div>
 
+            {/* Email */}
             <div className="relative">
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                Your Email
-              </label>
-              <div className="relative">
-                <AtSign className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  className="w-full pl-12 pr-4 py-3 rounded-xl bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
-                  placeholder="you@example.com"
-                />
-              </div>
+              <AtSign className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
+              <input
+                type="email"
+                name="email"
+                required
+                className="w-full pl-12 pr-4 py-3 rounded-xl bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600"
+                placeholder="you@example.com"
+              />
             </div>
 
+            {/* Message */}
             <div className="relative">
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                Message
-              </label>
-              <div className="relative">
-                <MessageCircle className="absolute left-3 top-4 text-gray-400" size={20} />
-                <textarea
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  rows="5"
-                  required
-                  className="w-full pl-12 pr-4 py-3 rounded-xl bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 resize-none"
-                  placeholder="Write your message here..."
-                />
-              </div>
+              <MessageCircle className="absolute left-3 top-4 text-gray-400" size={20} />
+              <textarea
+                name="message"
+                rows="5"
+                required
+                className="w-full pl-12 pr-4 py-3 rounded-xl bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 resize-none"
+                placeholder="Write your message here..."
+              />
             </div>
 
+            {/* Captcha */}
+            {showCaptcha && (
+              <div className="flex justify-center">
+                <ReCAPTCHA
+                  sitekey="6Lce3b4rAAAAAJxoY5BWZ89QNAvjs8YWS4jirVEs"
+                  onChange={handleCaptchaSuccess}
+                  ref={recaptchaRef}
+                />
+              </div>
+            )}
+
+            {/* Button */}
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full py-4 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 disabled:from-gray-400 disabled:to-gray-500 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 disabled:hover:translate-y-0 flex items-center justify-center gap-2"
+              className="w-full py-4 bg-gradient-to-r from-blue-600 to-purple-600 disabled:from-gray-400 disabled:to-gray-500 text-white font-semibold rounded-xl shadow-lg flex items-center justify-center gap-2"
             >
               {isSubmitting ? (
                 <>
                   <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
                   Sending...
                 </>
+              ) : showCaptcha ? (
+                "Verify Captcha"
               ) : (
-                <>
-                  Send Message
-                  <Send size={20} />
-                </>
+                "Send Message"
               )}
             </button>
           </form>
