@@ -31,11 +31,13 @@ const Contact = () => {
     },
   ];
 
+  // First click shows captcha
   const handleFakeSubmit = (e) => {
     e.preventDefault();
     setShowCaptcha(true);
   };
 
+  // After captcha is solved, submit form silently
   const handleCaptchaSuccess = async (value) => {
     if (value) {
       setIsSubmitting(true);
@@ -43,7 +45,7 @@ const Contact = () => {
       const formData = new FormData(form);
 
       try {
-        await fetch("https://formsubmit.co/ajax/achaulagain444@gmail.com", {
+        await fetch("https://formsubmit.co/ajax/9daadf95f19d74836f94790f3b1e3d75", {
           method: "POST",
           body: formData,
         });
