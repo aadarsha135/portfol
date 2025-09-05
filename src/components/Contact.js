@@ -5,6 +5,7 @@ import { Mail, Linkedin, Github, Send, MessageCircle, User, AtSign } from "lucid
 const Contact = () => {
   const [showCaptcha, setShowCaptcha] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [toastVisible, setToastVisible] = useState(false);
   const recaptchaRef = useRef();
 
   const contactInfo = [
@@ -66,20 +67,23 @@ const Contact = () => {
 
       if (res.ok) {
         form.reset();
-        setShowCaptcha(false); // hide captcha again
-        // optional: show toast/snackbar
+        setShowCaptcha(false);
+        setToastVisible(true);
+        setTimeout(() => setToastVisible(false), 4000); // toast disappears after 4 seconds
       } else {
         console.error("FormSubmit error:", res.statusText);
+        alert("Failed to send message. Try again.");
       }
     } catch (err) {
       console.error("Submission failed:", err);
+      alert("Error sending message. Try again.");
     }
 
     setIsSubmitting(false);
   };
 
   return (
-    <section id="contact" className="min-h-screen px-6 sm:px-8 py-20 mx-auto max-w-6xl">
+    <section id="contact" className="min-h-screen px-6 sm:px-8 py-20 mx-auto max-w-6xl relative">
       {/* Header */}
       <div className="text-center mb-16">
         <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
@@ -181,10 +185,7 @@ const Contact = () => {
             {/* Captcha */}
             {showCaptcha && (
               <div className="flex justify-center mb-4">
-                <ReCAPTCHA
-                  sitekey="6Lce3b4rAAAAAJxoY5BWZ89QNAvjs8YWS4jirVEs"
-                  ref={recaptchaRef}
-                />
+                <ReCAPTCHA sitekey="6Lce3b4rAAAAAJxoY5BWZ89QNAvjs8YWS4jirVEs" ref={recaptchaRef} />
               </div>
             )}
 
@@ -200,6 +201,28 @@ const Contact = () => {
           </form>
         </div>
       </div>
+
+      {/* Toast Notification */}
+      {toastVisible && (
+        <div className="fixed bottom-8 right-8 bg-green-600 text-white px-6 py-3 rounded-xl shadow-lg animate-fadeInOut">
+          Message sent successfully!
+        </div>
+      )}
+
+      {/* Toast animation */}
+      <style>
+        {`
+          @keyframes fadeInOut {
+            0% { opacity: 0; transform: translateY(20px); }
+            10% { opacity: 1; transform: translateY(0); }
+            90% { opacity: 1; transform: translateY(0); }
+            100% { opacity: 0; transform: translateY(20px); }
+          }
+          .animate-fadeInOut {
+            animation: fadeInOut 4s ease forwards;
+          }
+        `}
+      </style>
     </section>
   );
 };
