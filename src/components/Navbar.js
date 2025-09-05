@@ -7,27 +7,45 @@ const Navbar = ({ currentPage, onPageChange, toggleTheme, theme }) => {
 
   useEffect(() => {
     setIsMounted(true);
-    
+
     const handleScroll = () => {
       const isScrolled = window.scrollY > 20;
       setScrolled(isScrolled);
+
+      // Scroll spy: detect current section
+      const sections = ['home', 'about', 'skills', 'projects', 'contact'];
+      let current = currentPage;
+
+      sections.forEach((id) => {
+        const section = document.getElementById(id);
+        if (section) {
+          const rect = section.getBoundingClientRect();
+          // Adjust 100px offset for navbar height
+          if (rect.top <= 120 && rect.bottom > 120) {
+            current = id;
+          }
+        }
+      });
+
+      if (current !== currentPage) {
+        onPageChange(current);
+      }
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [currentPage, onPageChange]);
 
   const navItems = [
     { name: 'Home', id: 'home', icon: 'home-outline' },
     { name: 'About', id: 'about', icon: 'person-outline' },
     { name: 'Skills', id: 'skills', icon: 'build-outline' },
     { name: 'Projects', id: 'projects', icon: 'layers-outline' },
-
     { name: 'Contact', id: 'contact', icon: 'mail-outline' },
   ];
 
-  const navbarStyles = scrolled 
-    ? 'bg-white/95 dark:bg-gray-900/95 backdrop-blur-md border-b border-gray-200/30 dark:border-gray-700/30 shadow-xl shadow-gray-900/5 dark:shadow-black/30' 
+  const navbarStyles = scrolled
+    ? 'bg-white/95 dark:bg-gray-900/95 backdrop-blur-md border-b border-gray-200/30 dark:border-gray-700/30 shadow-xl shadow-gray-900/5 dark:shadow-black/30'
     : 'bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm border-b border-gray-200/10 dark:border-gray-700/10';
 
   return (
@@ -35,7 +53,7 @@ const Navbar = ({ currentPage, onPageChange, toggleTheme, theme }) => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
           
-          {/* Logo Section */}
+          {/* Logo */}
           <div className="flex items-center">
             <div className="relative group">
               <img
@@ -54,8 +72,8 @@ const Navbar = ({ currentPage, onPageChange, toggleTheme, theme }) => {
                 key={item.id}
                 onClick={() => onPageChange(item.id)}
                 className={`relative px-5 py-2.5 text-sm font-medium rounded-xl transition-all duration-300 ease-out group
-                  ${currentPage === item.id 
-                    ? 'text-blue-600 dark:text-blue-400 bg-blue-50/80 dark:bg-blue-900/30 shadow-inner' 
+                  ${currentPage === item.id
+                    ? 'text-blue-600 dark:text-blue-400 bg-blue-50/80 dark:bg-blue-900/30 shadow-inner'
                     : 'text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50/50 dark:hover:bg-gray-800/30'
                   }`}
               >
@@ -63,11 +81,11 @@ const Navbar = ({ currentPage, onPageChange, toggleTheme, theme }) => {
                   <ion-icon name={item.icon} className="text-lg"></ion-icon>
                   {item.name}
                 </span>
-                
+
                 {currentPage === item.id && (
                   <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-xl" />
                 )}
-                
+
                 <div 
                   className={`absolute bottom-0 left-1/2 w-0 h-1 bg-gradient-to-r from-blue-500 to-purple-500 transition-all duration-300 transform -translate-x-1/2 rounded-full ${
                     currentPage === item.id ? 'w-4/5' : 'group-hover:w-3/4'
@@ -79,7 +97,6 @@ const Navbar = ({ currentPage, onPageChange, toggleTheme, theme }) => {
 
           {/* Theme Toggle & Mobile Menu Button */}
           <div className="flex items-center space-x-3">
-            
             {/* Theme Toggle Button */}
             <button
               onClick={toggleTheme}
