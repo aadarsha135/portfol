@@ -1,5 +1,5 @@
-import React, { forwardRef, useState } from 'react';
-import { ExternalLink, Github, ChevronDown, ChevronUp, Layers, MessageCircle, Edit3, Music, Mail, Book, FileText, HelpCircle, Star } from 'lucide-react';
+import { Book, ChevronDown, ChevronUp, Edit3, ExternalLink, FileText, Github, HelpCircle, Layers, Mail, MessageCircle, Music, Star } from 'lucide-react';
+import { forwardRef, useState } from 'react';
 
 const ProjectsPage = forwardRef((props, ref) => {
   const [expandedProject, setExpandedProject] = useState(null);
@@ -9,7 +9,17 @@ const ProjectsPage = forwardRef((props, ref) => {
   };
 
   const projects = [
-   
+    {
+      icon: Layers,
+      name: "MultiMind: An AI-Powered Research Assistant",
+      tags: ["Django", "React", "AI Agents", "Semantic Search", "MongoDB"],
+      shortDescription: "An AI-powered research assistant with multiple fine-tuned agents working together in a pipeline.",
+      fullDescription: `Developed an AI-powered research assistant where all agents were manually fine-tuned by me (except the Research Agent, which leveraged a pretrained semantic search model). I manually created a dedicated MongoDB database for this project, initially populating it with ~12000 research documents and their vector embeddings. The database was specifically designed for semantic search and knowledge retrieval but can be extended to a much larger scale through API-based data ingestion. The system integrates multiple agents working together in a pipeline: the Research Agent retrieves relevant documents via semantic search; the Curation Agent assigns topic tags; the Summarization Agent condenses content; the RAG Q&A Agent generates fact-grounded answers; the Writing Agent polishes outputs; and the Question Generation Agent suggests follow-up queries for the 'People Also Searched For' section. The workflow begins with a user query → semantic search in the database → context retrieval → curation and summarization → fact-based answering → polished writing → follow-up question generation. Together, these agents form a full-stack platform built with a Django backend and a React frontend, enabling interactive and scalable research exploration.`,
+      github: "https://github.com/your-repo/multimind",
+      demo: "#",
+      color: "from-blue-500 to-cyan-500",
+      featured: true
+    },
     {
       icon: MessageCircle,
       name: "DeepScript: Context-Aware Screenplay Dialogue Generator",
@@ -127,7 +137,7 @@ const ProjectsPage = forwardRef((props, ref) => {
                   <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-purple-600 transition-all duration-300">
                     {project.name}
                   </h3>
-                  
+
                   {/* Tags */}
                   <div className="flex flex-wrap gap-2">
                     {project.tags.map((tag, i) => (
