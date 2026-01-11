@@ -136,9 +136,10 @@ const Navbar = ({ currentPage, onPageChange, toggleTheme, theme }) => {
                 <button
                   key={item.id}
                   onClick={() => {
+                    const section = document.getElementById(item.id);
+                    if (section) section.scrollIntoView({ behavior: 'smooth' });
                     onPageChange(item.id);
-                    setTimeout(() => setMobileMenuOpen(false), 100); // wait 100ms for scroll
-
+                    setMobileMenuOpen(false);
                   }}
                   className={`w-full text-left px-4 py-3 rounded-xl font-medium transition-all duration-300 ease-out transform hover:scale-[0.98] active:scale-95 flex items-center space-x-3
                     ${currentPage === item.id
