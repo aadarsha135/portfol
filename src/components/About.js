@@ -1,5 +1,4 @@
-import React from 'react';
-import { User, Code, Lightbulb, Target, Music } from 'lucide-react';
+import { Code, Lightbulb, Music, Target, User } from 'lucide-react';
 
 const About = () => {
   const highlights = [
@@ -49,7 +48,7 @@ const About = () => {
         </p>
         <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto mt-8 rounded-full"></div>
       </div>
-      
+
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         {/* Profile Image */}
         <div className="relative order-2 lg:order-1">
@@ -57,13 +56,13 @@ const About = () => {
             {/* Floating decorative elements */}
             <div className="absolute -top-4 -left-4 w-24 h-24 bg-gradient-to-r from-blue-400 to-purple-400 rounded-2xl rotate-12 opacity-20 animate-float"></div>
             <div className="absolute -bottom-4 -right-4 w-20 h-20 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full opacity-25 animate-float animation-delay-2000"></div>
-            
+
             {/* Main image container */}
             <div className="relative w-full h-full">
               <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full opacity-20 blur-2xl animate-pulse"></div>
               <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-white/20 dark:border-gray-800/20 backdrop-blur-sm shadow-2xl">
                 <img
-                  src="dada5.jpg"
+                  src="dada5.jpeg"
                   alt="Aadarsha Chaulagain"
                   className="w-full h-full object-cover"
                 />
@@ -78,7 +77,7 @@ const About = () => {
           {highlights.map((item, index) => {
             const IconComponent = item.icon;
             return (
-              <div 
+              <div
                 key={index}
                 className="group relative bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm border border-white/20 dark:border-gray-700/20 rounded-2xl p-6 hover:shadow-xl transition-all duration-500 hover:-translate-y-1"
               >
@@ -95,7 +94,7 @@ const About = () => {
                     </p>
                   </div>
                 </div>
-                
+
                 {/* Hover effect overlay */}
                 <div className={`absolute inset-0 rounded-2xl bg-gradient-to-r ${item.color} opacity-0 group-hover:opacity-5 transition-opacity duration-300`}></div>
               </div>
