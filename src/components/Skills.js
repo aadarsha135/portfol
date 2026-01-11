@@ -1,5 +1,4 @@
-import React from 'react';
-import { Code, Server, Cpu, Wrench, TrendingUp, Award } from 'lucide-react';
+import { Award, Code, Cpu, Server, TrendingUp, Wrench } from 'lucide-react';
 
 const Skills = () => {
   const skillCategories = [
@@ -13,19 +12,19 @@ const Skills = () => {
       title: "Backend Development",
       icon: Server,
       gradient: "from-purple-500 to-pink-500",
-      skills: ["Django", "Flask", "Node.js", "REST APIs"]
+      skills: ["Django", "Flask", "Node.js", "FastAPI", "REST APIs"]
     },
     {
       title: "AI & Machine Learning",
       icon: Cpu,
       gradient: "from-green-500 to-teal-500",
-      skills: ["Python", "TensorFlow", "PyTorch", "NLP", "Computer Vision", "Data Analysis"]
+      skills: ["Python", "TensorFlow", "PyTorch", "NLP", "Data Analysis"]
     },
     {
       title: "Tools & Technologies",
       icon: Wrench,
       gradient: "from-orange-500 to-red-500",
-      skills: ["Git",  "Linux", "Render","Github Pages"]
+      skills: ["Git", "Linux", "Render", "Github Pages"]
     }
   ];
 
@@ -47,10 +46,10 @@ const Skills = () => {
       {/* Stats Overview */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
         {[
-          { icon: Code, label: 'Languages', count: '7+' },
-          { icon: Wrench, label: 'Frameworks', count: '6+' },
+          { icon: Code, label: 'Languages', count: '6+' },
+          { icon: Wrench, label: 'Frameworks', count: '5+' },
           { icon: TrendingUp, label: 'Years Learning', count: '3+' },
-          { icon: Award, label: 'Projects', count: '12+' }
+          { icon: Award, label: 'Projects', count: '8+' }
         ].map((stat, index) => {
           const IconComponent = stat.icon;
           return (
