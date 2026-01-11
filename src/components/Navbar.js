@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 const Navbar = ({ currentPage, onPageChange, toggleTheme, theme }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -52,7 +52,7 @@ const Navbar = ({ currentPage, onPageChange, toggleTheme, theme }) => {
     <nav className={`${navbarStyles} fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out`}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
-          
+
           {/* Logo */}
           <div className="flex items-center">
             <div className="relative group">
@@ -86,10 +86,9 @@ const Navbar = ({ currentPage, onPageChange, toggleTheme, theme }) => {
                   <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-xl" />
                 )}
 
-                <div 
-                  className={`absolute bottom-0 left-1/2 w-0 h-1 bg-gradient-to-r from-blue-500 to-purple-500 transition-all duration-300 transform -translate-x-1/2 rounded-full ${
-                    currentPage === item.id ? 'w-4/5' : 'group-hover:w-3/4'
-                  }`}
+                <div
+                  className={`absolute bottom-0 left-1/2 w-0 h-1 bg-gradient-to-r from-blue-500 to-purple-500 transition-all duration-300 transform -translate-x-1/2 rounded-full ${currentPage === item.id ? 'w-4/5' : 'group-hover:w-3/4'
+                    }`}
                 />
               </button>
             ))}
@@ -104,8 +103,8 @@ const Navbar = ({ currentPage, onPageChange, toggleTheme, theme }) => {
               aria-label="Toggle dark mode"
             >
               <div className="relative z-10 transition-transform duration-300 group-hover:scale-110">
-                <ion-icon 
-                  name={theme === 'dark' ? 'sunny' : 'moon'} 
+                <ion-icon
+                  name={theme === 'dark' ? 'sunny' : 'moon'}
                   className="text-xl"
                 ></ion-icon>
               </div>
@@ -138,24 +137,25 @@ const Navbar = ({ currentPage, onPageChange, toggleTheme, theme }) => {
                   key={item.id}
                   onClick={() => {
                     onPageChange(item.id);
-                    setMobileMenuOpen(false);
+                    setTimeout(() => setMobileMenuOpen(false), 100); // wait 100ms for scroll
+
                   }}
                   className={`w-full text-left px-4 py-3 rounded-xl font-medium transition-all duration-300 ease-out transform hover:scale-[0.98] active:scale-95 flex items-center space-x-3
                     ${currentPage === item.id
                       ? 'bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-lg shadow-blue-500/25'
                       : 'text-gray-700 dark:text-gray-200 hover:bg-white/50 dark:hover:bg-gray-700/50'
                     }`}
-                  style={{ 
+                  style={{
                     animationDelay: `${index * 50}ms`,
                     animation: mobileMenuOpen ? 'fadeInUp 0.5s ease-out forwards' : 'none'
                   }}
                 >
-                  <ion-icon 
-                    name={item.icon} 
+                  <ion-icon
+                    name={item.icon}
                     className={`text-lg ${currentPage === item.id ? 'text-white' : 'text-gray-500'}`}
                   ></ion-icon>
                   <span>{item.name}</span>
-                  
+
                   {currentPage === item.id && (
                     <div className="ml-auto w-2 h-2 rounded-full bg-white animate-pulse"></div>
                   )}
