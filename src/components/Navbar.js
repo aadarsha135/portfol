@@ -5,12 +5,10 @@ const Navbar = ({ currentPage, onPageChange, toggleTheme, theme }) => {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-
     const handleScroll = () => {
       const isScrolled = window.scrollY > 20;
       setScrolled(isScrolled);
 
-      // Scroll spy: detect current section
       const sections = ['home', 'about', 'skills', 'projects', 'contact'];
       let current = currentPage;
 
@@ -18,7 +16,6 @@ const Navbar = ({ currentPage, onPageChange, toggleTheme, theme }) => {
         const section = document.getElementById(id);
         if (section) {
           const rect = section.getBoundingClientRect();
-          // Adjust 100px offset for navbar height
           if (rect.top <= 120 && rect.bottom > 120) {
             current = id;
           }
@@ -33,6 +30,30 @@ const Navbar = ({ currentPage, onPageChange, toggleTheme, theme }) => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, [currentPage, onPageChange]);
+
+  // New function for mobile navigation click
+  const handleMobileNavClick = (id) => {
+    // First close the mobile menu
+    setMobileMenuOpen(false);
+
+    // Update the current page
+    onPageChange(id);
+
+    // Small delay to ensure menu is closed before scrolling
+    setTimeout(() => {
+      const section = document.getElementById(id);
+      if (section) {
+        // More precise scrolling with offset for navbar
+        const navbarHeight = 80; // Approximate navbar height
+        const sectionTop = section.offsetTop - navbarHeight;
+
+        window.scrollTo({
+          top: sectionTop,
+          behavior: 'smooth'
+        });
+      }
+    }, 100);
+  };
 
   const navItems = [
     { name: 'Home', id: 'home', icon: 'home-outline' },
@@ -133,12 +154,7 @@ const Navbar = ({ currentPage, onPageChange, toggleTheme, theme }) => {
               {navItems.map((item, index) => (
                 <button
                   key={item.id}
-                  onClick={() => {
-                    const section = document.getElementById(item.id);
-                    if (section) section.scrollIntoView({ behavior: 'smooth' });
-                    onPageChange(item.id);
-                    setMobileMenuOpen(false);
-                  }}
+                  onClick={() => handleMobileNavClick(item.id)}
                   className={`w-full text-left px-4 py-3 rounded-xl font-medium transition-all duration-300 ease-out transform hover:scale-[0.98] active:scale-95 flex items-center space-x-3
                     ${currentPage === item.id
                       ? 'bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-lg shadow-blue-500/25'
