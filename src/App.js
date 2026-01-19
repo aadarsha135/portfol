@@ -54,7 +54,7 @@ const App = () => {
           theme={theme}
         />
 
-        <main className="px-4 sm:px-8">
+        <main className="px-4 sm:px-4">
           {/* Hero */}
           <section id="home" className="min-h-screen flex items-center justify-center">
             <HomePage onExploreClick={() => handlePageChange('projects')} />
