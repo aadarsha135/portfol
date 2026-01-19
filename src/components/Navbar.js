@@ -3,10 +3,8 @@ import { useEffect, useState } from 'react';
 const Navbar = ({ currentPage, onPageChange, toggleTheme, theme }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
-    setIsMounted(true);
 
     const handleScroll = () => {
       const isScrolled = window.scrollY > 20;
