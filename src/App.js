@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { Analytics } from '@vercel/analytics/react';
 import AboutPage from './components/About';
 import ContactPage from './components/Contact';
 import Footer from './components/Footer';
@@ -43,6 +44,7 @@ const App = () => {
 
   return (
     <Router>
+      <Analytics />
       <div className="min-h-screen transition-colors duration-300 bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white">
         {/* Navbar with correct prop */}
         <Navbar
