@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import HomePage from './components/Hero';
-import ProjectsPage from './components/Projects';
 import AboutPage from './components/About';
-import SkillsPage from './components/Skills';
 import ContactPage from './components/Contact';
 import Footer from './components/Footer';
+import HomePage from './components/Hero';
+import Navbar from './components/Navbar';
+import ProjectsPage from './components/Projects';
+import SkillsPage from './components/Skills';
 
 // Custom hook for dark mode
 const useDarkMode = () => {
