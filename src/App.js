@@ -43,6 +43,7 @@ const App = () => {
 
   return (
     <Router>
+      <Analytics />
       <div className="min-h-screen transition-colors duration-300 bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white">
         {/* Navbar with correct prop */}
         <Navbar
