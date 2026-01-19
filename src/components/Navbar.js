@@ -9,50 +9,51 @@ const Navbar = ({ currentPage, onPageChange, toggleTheme, theme }) => {
       const isScrolled = window.scrollY > 20;
       setScrolled(isScrolled);
 
+      // Improved scroll spy: find the section closest to the viewport top
       const sections = ['home', 'about', 'skills', 'projects', 'contact'];
+      const scrollPos = window.scrollY + window.innerHeight / 3; // Use 1/3 of viewport as threshold
+
       let current = currentPage;
 
-      sections.forEach((id) => {
-        const section = document.getElementById(id);
+      // Find the section that's closest to the scroll position
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const section = document.getElementById(sections[i]);
         if (section) {
-          const rect = section.getBoundingClientRect();
-          if (rect.top <= 120 && rect.bottom > 120) {
-            current = id;
+          if (section.offsetTop <= scrollPos) {
+            current = sections[i];
+            break;
           }
         }
-      });
+      }
 
       if (current !== currentPage) {
         onPageChange(current);
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    // Debounce scroll events for better performance
+    let timeoutId;
+    const debouncedScroll = () => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(handleScroll, 50);
+    };
+
+    window.addEventListener('scroll', debouncedScroll);
+    handleScroll(); // Initial check
+
+    return () => {
+      window.removeEventListener('scroll', debouncedScroll);
+      clearTimeout(timeoutId);
+    };
   }, [currentPage, onPageChange]);
 
-  // New function for mobile navigation click
+  // Function for mobile navigation click
   const handleMobileNavClick = (id) => {
-    // First close the mobile menu
+    // Close the mobile menu
     setMobileMenuOpen(false);
 
-    // Update the current page
+    // Update the current page - scrolling will be handled by App.js
     onPageChange(id);
-
-    // Small delay to ensure menu is closed before scrolling
-    setTimeout(() => {
-      const section = document.getElementById(id);
-      if (section) {
-        // More precise scrolling with offset for navbar
-        const navbarHeight = 80; // Approximate navbar height
-        const sectionTop = section.offsetTop - navbarHeight;
-
-        window.scrollTo({
-          top: sectionTop,
-          behavior: 'smooth'
-        });
-      }
-    }, 100);
   };
 
   const navItems = [

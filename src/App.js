@@ -35,11 +35,25 @@ const App = () => {
   const [theme, toggleTheme] = useDarkMode();
   const [currentPage, setCurrentPage] = useState('home');
 
+  // Improved smooth scroll function
+  const smoothScrollTo = (id) => {
+    const element = document.getElementById(id);
+    if (!element) return;
+
+    const navbarHeight = 80; // Height of your navbar
+    const elementPosition = element.getBoundingClientRect().top;
+    const offsetPosition = elementPosition + window.pageYOffset - navbarHeight;
+
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: 'smooth'
+    });
+  };
+
   // Smooth scroll + update current page
   const handlePageChange = (id) => {
     setCurrentPage(id);
-    const section = document.getElementById(id);
-    if (section) section.scrollIntoView({ behavior: 'smooth' });
+    smoothScrollTo(id);
   };
 
   return (
@@ -54,7 +68,7 @@ const App = () => {
           theme={theme}
         />
 
-        <main className="px-4 sm:px-4">
+        <main className="px-4 sm:px-8">
           {/* Hero */}
           <section id="home" className="min-h-screen flex items-center justify-center">
             <HomePage onExploreClick={() => handlePageChange('projects')} />
