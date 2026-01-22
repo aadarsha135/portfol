@@ -1,45 +1,45 @@
 import { useEffect, useRef, useState } from 'react';
 
+/* -----------------------------
+   STATIC NAV ITEMS (ESLint FIX)
+------------------------------ */
+const NAV_ITEMS = [
+  { name: 'Home', id: 'home', icon: 'home-outline' },
+  { name: 'About', id: 'about', icon: 'person-outline' },
+  { name: 'Skills', id: 'skills', icon: 'build-outline' },
+  { name: 'Projects', id: 'projects', icon: 'layers-outline' },
+  { name: 'Contact', id: 'contact', icon: 'mail-outline' },
+];
+
 const Navbar = ({ currentPage, onPageChange, toggleTheme, theme }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
-  // 🔑 Prevent scroll-spy during programmatic scroll
+  // Prevent scroll-spy during smooth scroll
   const isAutoScrolling = useRef(false);
 
-  const navItems = [
-    { name: 'Home', id: 'home', icon: 'home-outline' },
-    { name: 'About', id: 'about', icon: 'person-outline' },
-    { name: 'Skills', id: 'skills', icon: 'build-outline' },
-    { name: 'Projects', id: 'projects', icon: 'layers-outline' },
-    { name: 'Contact', id: 'contact', icon: 'mail-outline' },
-  ];
-
-  /* -------------------------------------------
-     Scroll handling + scroll spy
-  -------------------------------------------- */
+  /* ------------------------------------
+     Scroll + Scroll-Spy (ACTIVE HIGHLIGHT)
+  ------------------------------------- */
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
 
-      // ❌ Do not update active section while auto-scrolling
       if (isAutoScrolling.current) return;
 
-      const sections = navItems.map(i => document.getElementById(i.id));
       const scrollPos = window.scrollY + window.innerHeight / 3;
-
       let active = currentPage;
 
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const section = sections[i];
+      for (let i = NAV_ITEMS.length - 1; i >= 0; i--) {
+        const section = document.getElementById(NAV_ITEMS[i].id);
         if (section && section.offsetTop <= scrollPos) {
-          active = section.id;
+          active = NAV_ITEMS[i].id;
           break;
         }
       }
 
       if (active !== currentPage) {
-        onPageChange(active, false); // state update only
+        onPageChange(active, false); // state only
       }
     };
 
@@ -58,10 +58,10 @@ const Navbar = ({ currentPage, onPageChange, toggleTheme, theme }) => {
     };
   }, [currentPage, onPageChange]);
 
-  /* -------------------------------------------
-     Desktop nav click
-  -------------------------------------------- */
-  const handleNavClick = id => {
+  /* ------------------------------------
+     Navigation Clicks
+  ------------------------------------- */
+  const handleNavClick = (id) => {
     isAutoScrolling.current = true;
     onPageChange(id, true);
 
@@ -70,17 +70,9 @@ const Navbar = ({ currentPage, onPageChange, toggleTheme, theme }) => {
     }, 700);
   };
 
-  /* -------------------------------------------
-     Mobile nav click
-  -------------------------------------------- */
-  const handleMobileNavClick = id => {
+  const handleMobileNavClick = (id) => {
     setMobileMenuOpen(false);
-    isAutoScrolling.current = true;
-    onPageChange(id, true);
-
-    setTimeout(() => {
-      isAutoScrolling.current = false;
-    }, 700);
+    handleNavClick(id);
   };
 
   const navbarStyles = scrolled
@@ -106,7 +98,7 @@ const Navbar = ({ currentPage, onPageChange, toggleTheme, theme }) => {
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-1">
-            {navItems.map(item => (
+            {NAV_ITEMS.map(item => (
               <button
                 key={item.id}
                 onClick={() => handleNavClick(item.id)}
@@ -134,7 +126,7 @@ const Navbar = ({ currentPage, onPageChange, toggleTheme, theme }) => {
             ))}
           </div>
 
-          {/* Theme Toggle & Mobile Button */}
+          {/* Theme Toggle + Mobile Button */}
           <div className="flex items-center space-x-3">
             <button
               onClick={toggleTheme}
@@ -159,27 +151,49 @@ const Navbar = ({ currentPage, onPageChange, toggleTheme, theme }) => {
           </div>
         </div>
 
-        {/* Mobile Menu */}
-        <div className={`lg:hidden overflow-hidden transition-all duration-500 ${mobileMenuOpen ? 'max-h-96 mt-2' : 'max-h-0'}`}>
+        {/* Mobile Navigation */}
+        <div className={`lg:hidden overflow-hidden transition-all duration-500 ${mobileMenuOpen ? 'max-h-96 mt-2' : 'max-h-0 opacity-0'}`}>
           <div className="py-3 space-y-2">
-            {navItems.map(item => (
-              <button
-                key={item.id}
-                onClick={() => handleMobileNavClick(item.id)}
-                className={`w-full text-left px-4 py-3 rounded-xl font-medium transition-all
-                  ${currentPage === item.id
-                    ? 'bg-gradient-to-r from-blue-500 to-purple-500 text-white'
-                    : 'text-gray-700 dark:text-gray-200'
-                  }`}
-              >
-                {item.name}
-              </button>
-            ))}
+            <div className="bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 rounded-2xl p-3 border border-gray-200/50 dark:border-gray-700/50 shadow-lg">
+              {NAV_ITEMS.map((item, index) => (
+                <button
+                  key={item.id}
+                  onClick={() => handleMobileNavClick(item.id)}
+                  className={`w-full text-left px-4 py-3 rounded-xl font-medium transition-all duration-300 ease-out transform
+                    ${currentPage === item.id
+                      ? 'bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-lg'
+                      : 'text-gray-700 dark:text-gray-200 hover:bg-white/50 dark:hover:bg-gray-700/50'
+                    }`}
+                  style={{
+                    animationDelay: `${index * 50}ms`,
+                    animation: mobileMenuOpen ? 'fadeInUp 0.5s ease-out forwards' : 'none'
+                  }}
+                >
+                  <ion-icon
+                    name={item.icon}
+                    className={`text-lg ${currentPage === item.id ? 'text-white' : 'text-gray-500'}`}
+                  ></ion-icon>
+                  <span className="ml-3">{item.name}</span>
+                </button>
+              ))}
+            </div>
           </div>
         </div>
-
-
       </div>
+
+      {/* Animation */}
+      <style jsx>{`
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(10px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      `}</style>
     </nav>
   );
 };
