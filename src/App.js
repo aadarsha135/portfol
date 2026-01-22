@@ -9,23 +9,21 @@ import Navbar from './components/Navbar';
 import ProjectsPage from './components/Projects';
 import SkillsPage from './components/Skills';
 
-// Custom hook for dark mode
+/* ---------------- Dark Mode Hook ---------------- */
 const useDarkMode = () => {
   const [theme, setTheme] = useState('light');
 
   const toggleTheme = () => {
-    const newTheme = theme === 'light' ? 'dark' : 'light';
-    setTheme(newTheme);
-    localStorage.setItem('theme', newTheme);
-    document.documentElement.classList.toggle('dark', newTheme === 'dark');
+    const nextTheme = theme === 'light' ? 'dark' : 'light';
+    setTheme(nextTheme);
+    localStorage.setItem('theme', nextTheme);
+    document.documentElement.classList.toggle('dark', nextTheme === 'dark');
   };
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem('theme') || 'light';
-    setTheme(savedTheme);
-    if (savedTheme === 'dark') {
-      document.documentElement.classList.add('dark');
-    }
+    const saved = localStorage.getItem('theme') || 'light';
+    setTheme(saved);
+    if (saved === 'dark') document.documentElement.classList.add('dark');
   }, []);
 
   return [theme, toggleTheme];
@@ -35,32 +33,32 @@ const App = () => {
   const [theme, toggleTheme] = useDarkMode();
   const [currentPage, setCurrentPage] = useState('home');
 
-  // Improved smooth scroll function
-  const smoothScrollTo = (id) => {
-    const element = document.getElementById(id);
-    if (!element) return;
+  /* ---------------- Centralized page change ---------------- */
+  const handlePageChange = (id, shouldScroll = true) => {
+    setCurrentPage(id);
 
-    const navbarHeight = 80; // Height of your navbar
-    const elementPosition = element.getBoundingClientRect().top;
-    const offsetPosition = elementPosition + window.pageYOffset - navbarHeight;
+    if (!shouldScroll) return;
+
+    const section = document.getElementById(id);
+    if (!section) return;
+
+    const navbarHeight = 80;
+    const y =
+      section.getBoundingClientRect().top +
+      window.pageYOffset -
+      navbarHeight;
 
     window.scrollTo({
-      top: offsetPosition,
-      behavior: 'smooth'
+      top: y,
+      behavior: 'smooth',
     });
-  };
-
-  // Smooth scroll + update current page
-  const handlePageChange = (id) => {
-    setCurrentPage(id);
-    smoothScrollTo(id);
   };
 
   return (
     <Router>
       <Analytics />
       <div className="min-h-screen transition-colors duration-300 bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white">
-        {/* Navbar with correct prop */}
+
         <Navbar
           currentPage={currentPage}
           onPageChange={handlePageChange}
@@ -69,27 +67,22 @@ const App = () => {
         />
 
         <main className="px-4 sm:px-8">
-          {/* Hero */}
           <section id="home" className="min-h-screen flex items-center justify-center">
             <HomePage onExploreClick={() => handlePageChange('projects')} />
           </section>
 
-          {/* About */}
           <section id="about" className="py-20">
             <AboutPage />
           </section>
 
-          {/* Skills */}
           <section id="skills" className="py-20">
             <SkillsPage />
           </section>
 
-          {/* Projects */}
           <section id="projects" className="py-20">
             <ProjectsPage />
           </section>
 
-          {/* Contact */}
           <section id="contact" className="py-20">
             <ContactPage />
           </section>
