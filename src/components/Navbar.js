@@ -19,7 +19,7 @@ const Navbar = ({ currentPage, onPageChange, toggleTheme, theme }) => {
   const isAutoScrolling = useRef(false);
 
   /* ------------------------------------
-     Scroll + Scroll-Spy (ACTIVE HIGHLIGHT)
+      Scroll + Scroll-Spy (ACTIVE HIGHLIGHT)
   ------------------------------------- */
   useEffect(() => {
     const handleScroll = () => {
@@ -59,7 +59,7 @@ const Navbar = ({ currentPage, onPageChange, toggleTheme, theme }) => {
   }, [currentPage, onPageChange]);
 
   /* ------------------------------------
-     Navigation Clicks
+      Navigation Clicks
   ------------------------------------- */
   const handleNavClick = (id) => {
     isAutoScrolling.current = true;
@@ -102,10 +102,14 @@ const Navbar = ({ currentPage, onPageChange, toggleTheme, theme }) => {
               <button
                 key={item.id}
                 onClick={() => handleNavClick(item.id)}
-                className={`relative px-5 py-2.5 text-sm font-medium rounded-xl transition-all duration-300 ease-out group
+                /* CLEANED CLASSES: 
+                   Removed: rounded-xl, bg-blue-50, shadow-inner, hover:bg-gray-50
+                   Added: bg-transparent, border-none, outline-none, focus:ring-0
+                */
+                className={`relative px-5 py-2.5 text-sm font-medium transition-all duration-300 ease-out group bg-transparent border-none outline-none focus:outline-none focus:ring-0
                   ${currentPage === item.id
-                    ? 'text-blue-600 dark:text-blue-400 bg-blue-50/80 dark:bg-blue-900/30 shadow-inner'
-                    : 'text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50/50 dark:hover:bg-gray-800/30'
+                    ? 'text-blue-600 dark:text-blue-400'
+                    : 'text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400'
                   }`}
               >
                 <span className="relative z-10 flex items-center gap-2">
@@ -113,9 +117,7 @@ const Navbar = ({ currentPage, onPageChange, toggleTheme, theme }) => {
                   {item.name}
                 </span>
 
-                {currentPage === item.id && (
-                  <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-xl" />
-                )}
+                {/* THE REMOVED BLOCK WAS HERE (The conditional background div) */}
 
                 <div
                   className={`absolute bottom-0 left-1/2 w-0 h-1 bg-gradient-to-r from-blue-500 to-purple-500 transition-all duration-300 transform -translate-x-1/2 rounded-full
@@ -181,7 +183,6 @@ const Navbar = ({ currentPage, onPageChange, toggleTheme, theme }) => {
         </div>
       </div>
 
-      {/* Animation */}
       <style jsx>{`
         @keyframes fadeInUp {
           from {
