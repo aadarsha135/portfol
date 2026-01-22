@@ -105,11 +105,17 @@ const ProjectsPage = forwardRef((props, ref) => {
       ref={ref}
       className="min-h-screen px-4 sm:px-8 py-16 mx-auto max-w-7xl font-inter bg-white dark:bg-gray-900 dark:text-white transition-colors duration-300"
     >
-      <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-12 text-left text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-500 relative">
-        Featured Projects
-        <div className="absolute bottom-0 left-0 w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-500 rounded-full mt-2"></div>
-      </h2>
+      {/* Centered Animated Heading */}
+      <div className="flex justify-center">
+        <h2 className="relative text-3xl sm:text-4xl lg:text-5xl font-bold mb-12 text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-500">
+          Featured Projects
+          {/* Underline */}
+          <span className="absolute left-0 bottom-[-4px] h-1 bg-gradient-to-r from-blue-600 to-purple-500 rounded-full origin-left scale-x-0 animate-scaleX w-full"></span>
+        </h2>
+      </div>
 
+
+      {/* Projects Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {projects.map((project, idx) => {
           const IconComponent = project.icon;
@@ -163,32 +169,32 @@ const ProjectsPage = forwardRef((props, ref) => {
                   className="flex items-center gap-2 text-sm font-medium text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors duration-300"
                 >
                   {expandedProject === idx ? 'Show less' : 'Read more'}
-                  {expandedProject === idx ? (
-                    <ChevronUp size={16} />
-                  ) : (
-                    <ChevronDown size={16} />
-                  )}
+                  {expandedProject === idx ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
                 </button>
 
                 <div className="flex gap-3">
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-2 bg-gray-200 dark:bg-gray-700 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors group/btn"
-                    aria-label="View code on GitHub"
-                  >
-                    <Github size={18} className="text-gray-700 dark:text-gray-300 group-hover/btn:text-gray-900 dark:group-hover/btn:text-white transition-colors" />
-                  </a>
-                  <a
-                    href={project.demo}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-2 bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 rounded-lg transition-all duration-300 transform hover:scale-110 shadow-lg group/btn"
-                    aria-label="View live demo"
-                  >
-                    <ExternalLink size={18} className="text-white" />
-                  </a>
+                  {project.github && (
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-2 bg-gray-200 dark:bg-gray-700 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors group/btn"
+                      aria-label="View code on GitHub"
+                    >
+                      <Github size={18} className="text-gray-700 dark:text-gray-300 group-hover/btn:text-gray-900 dark:group-hover/btn:text-white transition-colors" />
+                    </a>
+                  )}
+                  {project.demo && (
+                    <a
+                      href={project.demo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-2 bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 rounded-lg transition-all duration-300 transform hover:scale-110 shadow-lg group/btn"
+                      aria-label="View live demo"
+                    >
+                      <ExternalLink size={18} className="text-white" />
+                    </a>
+                  )}
                 </div>
               </div>
 
@@ -206,6 +212,18 @@ const ProjectsPage = forwardRef((props, ref) => {
           <span className="text-gray-700 dark:text-gray-300">More projects available on my GitHub</span>
         </div>
       </div>
+
+      {/* Inline CSS for underline animation */}
+      <style jsx>{`
+        @keyframes scaleX {
+          0% { transform: scaleX(0); }
+          100% { transform: scaleX(1); }
+        }
+        .animate-scaleX {
+          animation: scaleX 0.8s ease-out forwards;
+          transform-origin: left;
+        }
+      `}</style>
     </section>
   );
 });

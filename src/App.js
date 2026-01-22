@@ -71,19 +71,19 @@ const App = () => {
             <HomePage onExploreClick={() => handlePageChange('projects')} />
           </section>
 
-          <section id="about" className="py-20">
+          <section id="about" className="py-10">
             <AboutPage />
           </section>
 
-          <section id="skills" className="py-20">
+          <section id="skills" className="py-0">
             <SkillsPage />
           </section>
 
-          <section id="projects" className="py-20">
+          <section id="projects" className="py-0">
             <ProjectsPage />
           </section>
 
-          <section id="contact" className="py-20">
+          <section id="contact" className="py-0">
             <ContactPage />
           </section>
         </main>

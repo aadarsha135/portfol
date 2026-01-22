@@ -1,6 +1,6 @@
-import React, { useState, useRef } from "react";
+import { AtSign, Github, Linkedin, Mail, MessageCircle, Send, User } from "lucide-react";
+import { useRef, useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
-import { Mail, Linkedin, Github, Send, MessageCircle, User, AtSign } from "lucide-react";
 
 const Contact = () => {
   const [showCaptcha, setShowCaptcha] = useState(false);
@@ -12,8 +12,8 @@ const Contact = () => {
     {
       icon: Mail,
       label: "Email",
-      value: "achaulagain444@gmail.com",
-      href: "mailto:achaulagain444@gmail.com",
+      value: "aadarsha871@gmail.com",
+      href: "https://mail.google.com/mail/?view=cm&fs=1&to=achaulagain444@gmail.com",
       color: "from-blue-500 to-cyan-500",
     },
     {
@@ -83,7 +83,8 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="min-h-screen px-6 sm:px-8 py-20 mx-auto max-w-6xl relative">
+    <section className="min-h-[calc(100vh-80px)] px-6 sm:px-8 py-20 mx-auto max-w-7xl overflow-hidden">
+
       {/* Header */}
       <div className="text-center mb-16">
         <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
