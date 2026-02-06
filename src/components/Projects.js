@@ -26,10 +26,10 @@ const ProjectsPage = forwardRef((props, ref) => {
       tags: ["GPT-2", "Emotion Analysis", "React", "Django", "NLP"],
       shortDescription: "A full-stack dialogue generation and emotion analysis system combining multiple deep learning models.",
       fullDescription: `DeepScript is a full-stack dialogue generation and emotion analysis system that combines multiple deep learning models into a single platform. I fine-tuned GPT-2 on a hybrid dataset of screenplays and Cornell dialogues to generate context-aware conversations, and fine-tuned another GPT-2 variant on emotion-tagged dialogues to produce emotionally driven outputs. Additionally, I utilized an emotion detection model fine tuned by myself to annotate over 300,000 dialogues from the Cornell Movie-Dialogs Corpus. The pipeline spans data preparation, fine-tuning, and deployment into a React frontend with a Django backend. Through this project, I learned how to combine diverse datasets for richer model performance, train specialized models for complementary NLP tasks, and bridge the gap between raw model training and real-world full-stack deployment.`,
-      github: "https://lnkd.in/d67tEhz8",
-      demo: "#",
+      github: "https://github.com/AADARSHA875/DEEPSCRIPT_WITH_DIALOGUE_GENERATION.git",
+
       color: "from-purple-500 to-pink-500",
-      featured: false
+      featured: true
     },
     {
       icon: Edit3,
@@ -37,8 +37,8 @@ const ProjectsPage = forwardRef((props, ref) => {
       tags: ["TensorFlow", "Keras", "GRU", "NLP"],
       shortDescription: "A deep learning project that generates Shakespeare-style text using a GRU architecture.",
       fullDescription: `A deep learning project that generates Shakespeare-style text at the character level using a GRU architecture. The model was trained on the Shakespeare corpus and built from scratch with TensorFlow/Keras. The pipeline included preprocessing, sequence batching, vectorization, and sampling. Temperature-controlled sampling was implemented to balance creativity and coherence in the generated outputs. This project reinforced my understanding of sequence modeling with GRUs, character-level text generation, and TensorFlow optimization techniques.`,
-      github: "https://lnkd.in/dWh2Cj-n",
-      demo: "#",
+      github: "https://github.com/AADARSHA875/character_level_text_generation.git",
+
       color: "from-green-500 to-teal-500",
       featured: false
     },
@@ -49,7 +49,7 @@ const ProjectsPage = forwardRef((props, ref) => {
       shortDescription: "A mood-aware music recommendation system powered by emotion detection from text input.",
       fullDescription: `MoodMate is a mood-aware music recommendation system powered by Flask, Tailwind CSS, and deep learning. It leverages NLP to analyze user input and detect emotion, then recommends songs using classification.`,
       github: "",
-      demo: "https://mood.rajkumarchaulagain.com.np",
+      demo: "https://mood.aadarshachaulagain.com.np",
       color: "from-orange-500 to-red-500",
       featured: true
     },
@@ -59,8 +59,8 @@ const ProjectsPage = forwardRef((props, ref) => {
       tags: ["Machine Learning", "Text Classification"],
       shortDescription: "A web-based application that helps users identify spam messages.",
       fullDescription: `ClearInbox is a web-based application that helps users identify whether a message is spam or not. The system uses a trained machine learning classifier to predict spam probability based on user input.`,
-      github: "https://github.com/your-repo/clearinbox",
-      demo: "#",
+      github: "https://github.com/AADARSHA875/clear-inbox.git",
+
       color: "from-indigo-500 to-blue-500",
       featured: false
     },
@@ -70,8 +70,8 @@ const ProjectsPage = forwardRef((props, ref) => {
       tags: ["Django", "Hybrid ML"],
       shortDescription: "A hybrid book recommendation system combining multiple machine learning techniques.",
       fullDescription: `Developed a web-based hybrid book recommendation system that combines multiple machine learning techniques to provide personalized book suggestions. Built with Django and integrated into a live website.`,
-      github: "https://github.com/your-repo/bookrec",
-      demo: "#",
+
+      demo: "book.aadarshachaulagain.com.np",
       color: "from-amber-500 to-yellow-500",
       featured: true
     },
@@ -81,10 +81,10 @@ const ProjectsPage = forwardRef((props, ref) => {
       tags: ["RAG", "Vector DB", "Embeddings"],
       shortDescription: "A Retrieval-Augmented Generation system for intelligent question answering.",
       fullDescription: `Developed a Retrieval-Augmented Generation (RAG) system that intelligently answers user questions by retrieving relevant information from a custom knowledge base. This system employs advanced embedding techniques for efficient similarity search and a large language model for synthesizing coherent and contextually relevant answers.`,
-      github: "https://github.com/your-repo/rag-system",
-      demo: "#",
+      github: "https://github.com/AADARSHA875/RAG-project.git",
+
       color: "from-emerald-500 to-green-500",
-      featured: false
+      featured: true
     },
     {
       icon: HelpCircle,
@@ -92,10 +92,10 @@ const ProjectsPage = forwardRef((props, ref) => {
       tags: ["Transformers", "HuggingFace", "Deep Learning"],
       shortDescription: "A deep learning-based Question Answering model fine-tuned on SQuAD v2.",
       fullDescription: `Developed a deep learning-based Question Answering (QA) model capable of extracting precise answers from provided textual contexts. This system utilizes a transformer-based model fine-tuned on the SQuAD v2 dataset. The implementation includes advanced data preprocessing for batched operations and robust handling of unanswerable questions.`,
-      github: "https://github.com/your-repo/qa-squad",
-      demo: "#",
+      github: "https://github.com/AADARSHA875/Extractive-question-answering.git",
+
       color: "from-violet-500 to-purple-500",
-      featured: true
+      featured: false
     }
   ];
 
