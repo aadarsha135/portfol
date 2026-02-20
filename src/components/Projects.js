@@ -10,14 +10,32 @@ const ProjectsPage = forwardRef((props, ref) => {
 
   const projects = [
     {
-      icon: Layers,
-      name: "MultiMind: An AI-Powered Research Assistant",
-      tags: ["Django", "React", "AI Agents", "Semantic Search", "MongoDB"],
-      shortDescription: "An AI-powered research assistant with multiple fine-tuned agents working together in a pipeline.",
-      fullDescription: `Developed an AI-powered research assistant where all agents were manually fine-tuned by me (except the Research Agent, which leveraged a pretrained semantic search model). I manually created a dedicated MongoDB database for this project, initially populating it with ~12000 research documents and their vector embeddings. The database was specifically designed for semantic search and knowledge retrieval but can be extended to a much larger scale through API-based data ingestion. The system integrates multiple agents working together in a pipeline: the Research Agent retrieves relevant documents via semantic search; the Curation Agent assigns topic tags; the Summarization Agent condenses content; the RAG Q&A Agent generates fact-grounded answers; the Writing Agent polishes outputs; and the Question Generation Agent suggests follow-up queries for the 'People Also Searched For' section. The workflow begins with a user query → semantic search in the database → context retrieval → curation and summarization → fact-based answering → polished writing → follow-up question generation. Together, these agents form a full-stack platform built with a Django backend and a React frontend, enabling interactive and scalable research exploration.`,
-      github: "https://github.com/your-repo/multimind",
-      demo: "#",
-      color: "from-blue-500 to-cyan-500",
+      icon: Layers, name: "MultiMind: An AI-Powered Research Assistant", tags: ["Django", "React", "AI Agents", "Semantic Search", "MongoDB"], shortDescription: "An AI-powered research assistant with multiple fine-tuned agents working together in a pipeline.", fullDescription: " MultiMind is a full-stack AI research assistant built around a modular multi-agent architecture. The Research Agent leverages a pretrained semantic search model to retrieve relevant documents from a dedicated MongoDB knowledge base containing around 7,000 research documents. Four other key agents—Curation, Summarization, RAG Q&A, and Writing—were all fine-tuned by me to work seamlessly together.The Curation Agent analyzes retrieved content and assigns structured topic tags to organize research outputs, making them easier to navigate.The Summarization Agent condenses lengthy content into clear and concise summaries, preserving key information.The RAG Q& A Agent produces fact - based answers strictly grounded in the retrieved documents, ensuring accuracy and reliability.The Writing Agent refines the output into polished, coherent text suitable for reading or presentation.The Question Generation Agent suggests relevant follow - up questions to help users explore related topics, similar to a 'People Also Searched For' feature.The workflow begins when a user submits a query.The Research Agent retrieves relevant documents using semantic search.The Curation Agent organizes the content with topic tags, the Summarization Agent condenses it, the RAG Q & A Agent generates factual answers, and the Writing Agent produces polished outputs.Finally, the Question Generation Agent proposes follow - up questions to guide deeper exploration.Together, these agents form an interactive, scalable, and fully integrated research platform built with a Django backend and a React frontend.",
+      github: "https://github.com/your-repo/multimind", demo: "#", color: "from-blue-500 to-cyan-500", featured: true
+    },
+
+
+
+    {
+      icon: FileText,
+      name: "EchoSum: AI-Powered Audio Transcription & Summarization",
+      tags: ["Django", "Celery", "Whisper AI", "MongoDB", "Redis"],
+      shortDescription: "An AI-powered system that transcribes, summarizes, and organizes uploaded audio content with intelligent processing.",
+      fullDescription: "EchoSum is an AI- powered system that transcribes, summarizes, and organizes audio recordings through an intuitive upload - and - process workflow.Users manually upload audio files(lectures, podcasts, interviews, meetings), then trigger processing to generate speaker - aware transcripts and concise executive summaries with key points.The system leverages OpenAI's Whisper for accurate speech-to-text conversion with timestamps, and all-mpnet-base-v2 for text embeddings. Built with Django REST framework and Celery for asynchronous task processing, it efficiently handles long audio files in the background. Transcripts and summaries are stored in MongoDB for later retrieval, with Redis serving as the message broker. The pipeline—from upload to transcription to summarization—delivers structured, searchable insights on demand.",
+      github: "https://github.com/AADARSHA875/EchoSum.git",
+      demo: "",
+      color: "from-rose-500 to-pink-500",
+      featured: true
+    },
+    {
+      icon: Music,
+      name: "MoodMate",
+      tags: ["NLP", "Emotion Detection", "Flask", "Spotify API", "Transformers"],
+      shortDescription: "A mood-aware music recommendation system that detects emotions from text and suggests personalized Spotify playlists.",
+      fullDescription: `MoodMate is an intelligent music recommendation system that analyzes user text input to detect emotions and suggests songs accordingly. I fine-tuned a BERT-base-uncased model on the GoEmotions dataset (28 emotion labels) using Hugging Face Transformers, achieving accurate multi-label emotion classification. The system processes user text through the fine-tuned model, identifies top emotions with confidence scores, and maps them to emojis for visual feedback. Users then select their preferred music "intent" (uplifting, chill, energetic, soothing, emotional), and the application queries the Spotify API to fetch relevant tracks based on emotion-intent mappings. Each recommendation includes both Spotify and YouTube links for accessibility. Built with Flask backend and custom frontend templates, the application handles the complete pipeline: text input → emotion detection → intent selection → song recommendations → dual-platform music links. `,
+      github: "https://github.com/your-repo/moodmate", // Add your GitHub repo link here
+      demo: "https://mood.aadarshachaulagain.com.np",
+      color: "from-orange-500 to-red-500",
       featured: true
     },
     {
@@ -32,45 +50,12 @@ const ProjectsPage = forwardRef((props, ref) => {
       featured: true
     },
     {
-      icon: Edit3,
-      name: "Shakespearean Text Generator (Character-Level GRU)",
-      tags: ["TensorFlow", "Keras", "GRU", "NLP"],
-      shortDescription: "A deep learning project that generates Shakespeare-style text using a GRU architecture.",
-      fullDescription: `A deep learning project that generates Shakespeare-style text at the character level using a GRU architecture. The model was trained on the Shakespeare corpus and built from scratch with TensorFlow/Keras. The pipeline included preprocessing, sequence batching, vectorization, and sampling. Temperature-controlled sampling was implemented to balance creativity and coherence in the generated outputs. This project reinforced my understanding of sequence modeling with GRUs, character-level text generation, and TensorFlow optimization techniques.`,
-      github: "https://github.com/AADARSHA875/character_level_text_generation.git",
-
-      color: "from-green-500 to-teal-500",
-      featured: false
-    },
-    {
-      icon: Music,
-      name: "MoodMate",
-      tags: ["NLP", "Emotion Detection", "Flask"],
-      shortDescription: "A mood-aware music recommendation system powered by emotion detection from text input.",
-      fullDescription: `MoodMate is a mood-aware music recommendation system powered by Flask, Tailwind CSS, and deep learning. It leverages NLP to analyze user input and detect emotion, then recommends songs using classification.`,
-      github: "",
-      demo: "https://mood.aadarshachaulagain.com.np",
-      color: "from-orange-500 to-red-500",
-      featured: true
-    },
-    {
-      icon: Mail,
-      name: "ClearInbox",
-      tags: ["Machine Learning", "Text Classification"],
-      shortDescription: "A web-based application that helps users identify spam messages.",
-      fullDescription: `ClearInbox is a web-based application that helps users identify whether a message is spam or not. The system uses a trained machine learning classifier to predict spam probability based on user input.`,
-      github: "https://github.com/AADARSHA875/clear-inbox.git",
-
-      color: "from-indigo-500 to-blue-500",
-      featured: false
-    },
-    {
       icon: Book,
       name: "Book Recommender",
-      tags: ["Django", "Hybrid ML"],
-      shortDescription: "A hybrid book recommendation system combining multiple machine learning techniques.",
-      fullDescription: `Developed a web-based hybrid book recommendation system that combines multiple machine learning techniques to provide personalized book suggestions. Built with Django and integrated into a live website.`,
-
+      tags: ["Django", "Hybrid ML", "Collaborative Filtering", "Content-Based", "TF-IDF"],
+      shortDescription: "A sophisticated hybrid book recommendation engine combining four different ML approaches for personalized suggestions.",
+      fullDescription: `Developed a comprehensive hybrid book recommendation system that combines four distinct recommendation strategies: ratings-based collaborative filtering, category-based similarity, audience-age matching, and content-based TF-IDF analysis on book summaries. Built with Django, the system features user authentication, personalized genre selection during onboarding, and fuzzy string matching for typo-tolerant searches. The recommendation pipeline processes user queries through parallel algorithms, weights the results, and returns deduplicated suggestions with book cover images. Key technical implementations include TF-IDF vectorization for text features, cosine similarity calculations and session-based recommendation storage. The platform offers multiple browsing modes (ratings, category, age, content) and maintains search history for authenticated users, delivering a robust, production-ready book discovery experience.`,
+      github: "https://github.com/AADARSHA875/clear-inbox.git",
       demo: "book.aadarshachaulagain.com.np",
       color: "from-amber-500 to-yellow-500",
       featured: true
@@ -86,6 +71,31 @@ const ProjectsPage = forwardRef((props, ref) => {
       color: "from-emerald-500 to-green-500",
       featured: true
     },
+    {
+      icon: Edit3,
+      name: "Shakespearean Text Generator (Character-Level GRU)",
+      tags: ["TensorFlow", "Keras", "GRU", "NLP"],
+      shortDescription: "A deep learning project that generates Shakespeare-style text using a GRU architecture.",
+      fullDescription: `A deep learning project that generates Shakespeare-style text at the character level using a GRU architecture. The model was trained on the Shakespeare corpus and built from scratch with TensorFlow/Keras. The pipeline included preprocessing, sequence batching, vectorization, and sampling. Temperature-controlled sampling was implemented to balance creativity and coherence in the generated outputs. This project reinforced my understanding of sequence modeling with GRUs, character-level text generation, and TensorFlow optimization techniques.`,
+      github: "https://github.com/AADARSHA875/character_level_text_generation.git",
+
+      color: "from-green-500 to-teal-500",
+      featured: true,
+    },
+
+    {
+      icon: Mail,
+      name: "ClearInbox",
+      tags: ["Machine Learning", "Text Classification"],
+      shortDescription: "A web-based application that helps users identify spam messages.",
+      fullDescription: `ClearInbox is a web-based application that helps users identify whether a message is spam or not. The system uses a trained machine learning classifier to predict spam probability based on user input.`,
+      github: "https://github.com/AADARSHA875/clear-inbox.git",
+
+      color: "from-indigo-500 to-blue-500",
+      featured: false
+    },
+
+
     {
       icon: HelpCircle,
       name: "QA System (SQuAD v2)",
@@ -105,14 +115,7 @@ const ProjectsPage = forwardRef((props, ref) => {
       ref={ref}
       className="min-h-screen px-4 sm:px-8 py-16 mx-auto max-w-7xl font-inter bg-white dark:bg-gray-900 dark:text-white transition-colors duration-300"
     >
-      {/* Centered Animated Heading */}
-      <div className="flex justify-center">
-        <h2 className="relative text-3xl sm:text-4xl lg:text-5xl font-bold mb-12 text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-500">
-          Featured Projects
-          {/* Underline */}
-          <span className="absolute left-0 bottom-[-4px] h-1 bg-gradient-to-r from-blue-600 to-purple-500 rounded-full origin-left scale-x-0 animate-scaleX w-full"></span>
-        </h2>
-      </div>
+
 
 
       {/* Projects Grid */}
@@ -124,25 +127,31 @@ const ProjectsPage = forwardRef((props, ref) => {
               key={idx}
               className="group relative bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
             >
-              {/* Featured Badge */}
-              {project.featured && (
-                <div className="absolute top-4 right-4 z-10">
-                  <div className="flex items-center gap-1 bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-3 py-1 rounded-full text-sm font-medium">
-                    <Star size={14} className="fill-current" />
-                    Featured
-                  </div>
-                </div>
-              )}
 
               {/* Project Header */}
               <div className="flex items-start gap-4 mb-4">
-                <div className={`p-3 rounded-xl bg-gradient-to-r ${project.color} shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                {/* Icon */}
+                <div className={`p-3 rounded-xl bg-gradient-to-r ${project.color} shadow-lg group-hover:scale-110 transition-transform duration-300 flex-shrink-0`}>
                   <IconComponent className="w-6 h-6 text-white" />
                 </div>
-                <div className="flex-1">
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-purple-600 transition-all duration-300">
-                    {project.name}
-                  </h3>
+
+                {/* Title and Tags Container - Modified for better badge handling */}
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-start justify-between gap-2">
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-purple-600 transition-all duration-300 flex-1">
+                      {project.name}
+                    </h3>
+
+                    {/* Featured Badge - Now positioned with flexbox instead of absolute */}
+                    {project.featured && (
+                      <div className="flex-shrink-0">
+                        <div className="flex items-center gap-1 bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-3 py-1 rounded-full text-sm font-medium whitespace-nowrap">
+                          <Star size={14} className="fill-current" />
+                          Featured
+                        </div>
+                      </div>
+                    )}
+                  </div>
 
                   {/* Tags */}
                   <div className="flex flex-wrap gap-2">
@@ -154,6 +163,9 @@ const ProjectsPage = forwardRef((props, ref) => {
                   </div>
                 </div>
               </div>
+
+
+
 
               {/* Project Description */}
               <div className="mb-6">
