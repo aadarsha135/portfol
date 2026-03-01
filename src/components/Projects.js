@@ -9,9 +9,29 @@ const ProjectsPage = forwardRef((props, ref) => {
   };
 
   const projects = [
+
     {
-      icon: Layers, name: "MultiMind: An AI-Powered Research Assistant", tags: ["Django", "React", "AI Agents", "Semantic Search", "MongoDB"], shortDescription: "An AI-powered research assistant with multiple fine-tuned agents working together in a pipeline.", fullDescription: " MultiMind is a full-stack AI research assistant built around a modular multi-agent architecture. The Research Agent leverages a pretrained semantic search model to retrieve relevant documents from a dedicated MongoDB knowledge base containing around 7,000 research documents. Four other key agents—Curation, Summarization, RAG Q&A, and Writing—were all fine-tuned by me to work seamlessly together.The Curation Agent analyzes retrieved content and assigns structured topic tags to organize research outputs, making them easier to navigate.The Summarization Agent condenses lengthy content into clear and concise summaries, preserving key information.The RAG Q& A Agent produces fact - based answers strictly grounded in the retrieved documents, ensuring accuracy and reliability.The Writing Agent refines the output into polished, coherent text suitable for reading or presentation.The Question Generation Agent suggests relevant follow - up questions to help users explore related topics, similar to a 'People Also Searched For' feature.The workflow begins when a user submits a query.The Research Agent retrieves relevant documents using semantic search.The Curation Agent organizes the content with topic tags, the Summarization Agent condenses it, the RAG Q & A Agent generates factual answers, and the Writing Agent produces polished outputs.Finally, the Question Generation Agent proposes follow - up questions to guide deeper exploration.Together, these agents form an interactive, scalable, and fully integrated research platform built with a Django backend and a React frontend.",
-      github: "https://github.com/your-repo/multimind", demo: "#", color: "from-blue-500 to-cyan-500", featured: true
+      icon: Layers,
+      name: "MultiMind: Orchestrated Multi-Agent AI Research Assistant",
+      tags: [
+        "Django",
+        "React",
+        "Multi-Agent Systems",
+        "RAG",
+        "Semantic Search",
+        "MongoDB",
+        "LLM Orchestration"
+      ],
+
+      shortDescription:
+        "A goal-driven AI research assistant that orchestrates multiple specialized agents into intelligent research, learning, and writing workflows.",
+
+      fullDescription: "MultiMind is a full-stack AI research assistant built using an orchestrated multi-agent architecture designed to transform complex information workflows into a single intelligent experience.Instead of exposing isolated AI tools, MultiMind introduces an orchestration layer that dynamically coordinates multiple specialized agents based on user intent such as researching a topic, learning concepts, writing articles, exploring questions, or getting quick answers.The system begins when a user submits a query through a unified interface. A central Orchestration Engine determines the appropriate execution pipeline and automatically activates the required agents.The Research Agent performs semantic search over a MongoDB knowledge base containing thousands of curated research documents to retrieve contextually relevant information.The Curation Agent analyzes retrieved content and assigns structured topic tags, improving organization and contextual understanding.The Summarization Agent condenses long documents into concise, information-dense summaries while preserving key insights.The RAG (Retrieval-Augmented Generation) Agent generates fact-grounded answers strictly based on retrieved sources, ensuring reliability and reducing hallucinations.The Question Generation Agent produces intelligent follow-up questions, enabling deeper topic exploration similar to a “People Also Asked” experience.Finally, the Writing Agent synthesizes summaries, tags, and verified answers into polished, human-readable articles suitable for learning or publishing.A dedicated orchestration layer manages agent sequencing, pipeline routing, and response aggregation, transforming multiple AI components into a cohesive knowledge assistant rather than a collection of tools.Built with a Django backend and React frontend, MultiMind demonstrates scalable multi-agent system design, modular AI architecture, and real-world Retrieval-Augmented Generation workflows.",
+
+      github: "https://github.com/your-repo/multimind",
+      demo: "#",
+      color: "from-blue-500 to-cyan-500",
+      featured: true
     },
 
 
