@@ -6,7 +6,7 @@ const Skills = () => {
       title: "Frontend Development",
       icon: Code,
       gradient: "from-blue-500 to-cyan-500",
-      skills: ["React / Next.js", "Tailwind CSS", "State Management", "JavaScript )", "Responsive UI/UX"]
+      skills: ["React / Next.js", "Tailwind CSS", "State Management", "JavaScript ", "Responsive UI/UX"]
     },
     {
       title: "Backend Development",
@@ -46,10 +46,10 @@ const Skills = () => {
       {/* Stats Overview */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
         {[
-          { icon: Code, label: 'Languages', count: '8+' },
+          { icon: Code, label: 'Languages', count: '5+' },
           { icon: Wrench, label: 'Frameworks', count: '10+' },
           { icon: TrendingUp, label: 'Years Learning', count: '3+' },
-          { icon: Award, label: 'Projects', count: '15+' }
+          { icon: Award, label: 'Projects', count: '12+' }
         ].map((stat, index) => {
           const IconComponent = stat.icon;
           return (

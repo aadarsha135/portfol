@@ -31,8 +31,8 @@ const ProjectsPage = forwardRef((props, ref) => {
 
       fullDescription: "MultiMind is a full-stack AI research assistant built using an orchestrated multi-agent architecture designed to transform complex information workflows into a single intelligent experience.Instead of exposing isolated AI tools, MultiMind introduces an orchestration layer that dynamically coordinates multiple specialized agents based on user intent such as researching a topic, learning concepts, writing articles, exploring questions, or getting quick answers.The system begins when a user submits a query through a unified interface. A central Orchestration Engine determines the appropriate execution pipeline and automatically activates the required agents.The Research Agent performs semantic search over a MongoDB knowledge base containing thousands of curated research documents to retrieve contextually relevant information.The Curation Agent analyzes retrieved content and assigns structured topic tags, improving organization and contextual understanding.The Summarization Agent condenses long documents into concise, information-dense summaries while preserving key insights.The RAG (Retrieval-Augmented Generation) Agent generates fact-grounded answers strictly based on retrieved sources, ensuring reliability and reducing hallucinations.The Question Generation Agent produces intelligent follow-up questions, enabling deeper topic exploration similar to a “People Also Asked” experience.Finally, the Writing Agent synthesizes summaries, tags, and verified answers into polished, human-readable articles suitable for learning or publishing.A dedicated orchestration layer manages agent sequencing, pipeline routing, and response aggregation, transforming multiple AI components into a cohesive knowledge assistant rather than a collection of tools.Built with a Django backend and React frontend, MultiMind demonstrates scalable multi-agent system design, modular AI architecture, and real-world Retrieval-Augmented Generation workflows.",
 
-      github: "https://github.com/your-repo/multimind",
-      demo: "#",
+      github: "",
+      demo: "",
       color: "from-blue-500 to-cyan-500",
       featured: true
     },
@@ -43,7 +43,7 @@ const ProjectsPage = forwardRef((props, ref) => {
       "shortDescription": "A production-ready school management system with role-based dashboards for Admin, Teacher, and Student — covering attendance, assignments, exams, report cards, and timetables.",
       "fullDescription": "EduManage is a complete institutional management platform built with a FastAPI backend and Next.js frontend, deployed on AWS ECS with PostgreSQL on RDS. The system implements a strict role-based access control architecture with three distinct user roles — Admin, Teacher, and Student — each with a dedicated dashboard and scoped permissions enforced at the API level via JWT middleware dependencies (require_admin, require_teacher, require_any). The Admin controls the entire system: creating teacher and student accounts (which automatically provision login credentials), managing classes, subjects, timetable, and notices, and accessing a live dashboard with real-time attendance and enrollment statistics. Teachers can mark bulk class attendance, create and grade assignments, enter exam marks per subject, and post notices. Students access their own attendance calendar with monthly breakdowns and eligibility status, view assignments filtered to their class, submit work online, and generate report cards with per-subject percentage breakdowns and auto-calculated letter grades (A+ through F).  School data is isolated in a dedicated PostgreSQL database. ",
       "github": "https://github.com/AADARSHA875",
-      "demo": "https://school-management-system-woad-theta.vercel.app",
+      "demo": "https://edu.aadarshachaulagain.com.np/",
       "color": "from-orange-500 to-amber-500",
       "featured": true,
       "architecture": {
@@ -95,8 +95,8 @@ const ProjectsPage = forwardRef((props, ref) => {
       "tags": ["NLP", "Transformers", "BART", "DistilRoBERTa", "BERTScore", "Hugging Face"],
       "shortDescription": "A sophisticated hybrid summarization system combining extractive scoring with abstractive generation for high-quality, factually accurate text summaries.",
       "fullDescription": "An advanced text summarization system that leverages a two-stage pipeline for generating concise, factually accurate summaries from long-form text. The system first uses a fine-tuned DistilRoBERTa model to score and extract the most important sentences, then employs a fine-tuned BART model to generate novel, fluent summaries with adaptive parameters based on input length. Key features include intelligent chunking with configurable overlap, length-adaptive generation parameters (beam search, token limits, repetition penalties), comprehensive fact verification to minimize hallucinations, and extensive post-processing for readability. Built with PyTorch and Hugging Face Transformers, the system handles texts ranging from short paragraphs to long documents. Built-in evaluation computes ROUGE, BERTScore, coverage metrics, novelty scores, and fact verification, providing detailed performance insights. The system maintains deterministic behavior through seeded randomness for reproducible results.",
-      "github": "https://github.com/your-repo/hybrid-summarizer", // Add your GitHub repo link here
-      "demo": "", // Optional: Add demo link if available
+      "github": "https://github.com/AADARSHA875/text_summarizer.git", // Add your GitHub repo link here
+      "demo": "https://text-summarizer-green.vercel.app/", // Optional: Add demo link if available
       "color": "from-blue-500 to-purple-500",
       "featured": true,
 
@@ -124,7 +124,7 @@ const ProjectsPage = forwardRef((props, ref) => {
       tags: ["NLP", "Emotion Detection", "Flask", "Spotify API", "Transformers"],
       shortDescription: "A mood-aware music recommendation system that detects emotions from text and suggests personalized Spotify playlists.",
       fullDescription: `MoodMate is an intelligent music recommendation system that analyzes user text input to detect emotions and suggests songs accordingly. I fine-tuned a BERT-base-uncased model on the GoEmotions dataset (28 emotion labels) using Hugging Face Transformers, achieving accurate multi-label emotion classification. The system processes user text through the fine-tuned model, identifies top emotions with confidence scores, and maps them to emojis for visual feedback. Users then select their preferred music "intent" (uplifting, chill, energetic, soothing, emotional), and the application queries the Spotify API to fetch relevant tracks based on emotion-intent mappings. Each recommendation includes both Spotify and YouTube links for accessibility. Built with Flask backend and custom frontend templates, the application handles the complete pipeline: text input → emotion detection → intent selection → song recommendations → dual-platform music links. `,
-      github: "https://github.com/your-repo/moodmate", // Add your GitHub repo link here
+      github: "https://github.com/AADARSHA875/mood.git", // Add your GitHub repo link here
       demo: "https://mood.aadarshachaulagain.com.np",
       color: "from-orange-500 to-red-500",
       featured: true
@@ -146,8 +146,8 @@ const ProjectsPage = forwardRef((props, ref) => {
       tags: ["Django", "Hybrid ML", "Collaborative Filtering", "Content-Based", "TF-IDF"],
       shortDescription: "A sophisticated hybrid book recommendation engine combining four different ML approaches for personalized suggestions.",
       fullDescription: `Developed a comprehensive hybrid book recommendation system that combines four distinct recommendation strategies: ratings-based collaborative filtering, category-based similarity, audience-age matching, and content-based TF-IDF analysis on book summaries. Built with Django, the system features user authentication, personalized genre selection during onboarding, and fuzzy string matching for typo-tolerant searches. The recommendation pipeline processes user queries through parallel algorithms, weights the results, and returns deduplicated suggestions with book cover images. Key technical implementations include TF-IDF vectorization for text features, cosine similarity calculations and session-based recommendation storage. The platform offers multiple browsing modes (ratings, category, age, content) and maintains search history for authenticated users, delivering a robust, production-ready book discovery experience.`,
-      github: "https://github.com/AADARSHA875/clear-inbox.git",
-      demo: "book.aadarshachaulagain.com.np",
+      github: "",
+      demo: "",
       color: "from-amber-500 to-yellow-500",
       featured: true
     },
