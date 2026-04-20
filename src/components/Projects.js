@@ -8,7 +8,10 @@ const ProjectsPage = forwardRef((props, ref) => {
     setExpandedProject(expandedProject === index ? null : index);
   };
 
+
+
   const projects = [
+
 
     {
       icon: Layers,
@@ -33,6 +36,71 @@ const ProjectsPage = forwardRef((props, ref) => {
       color: "from-blue-500 to-cyan-500",
       featured: true
     },
+    {
+      "icon": "GraduationCap",
+      "name": "EduManage: Full-Stack Educational Institution Management System",
+      "tags": ["FastAPI", "Next.js", "PostgreSQL", "JWT", "SQLAlchemy", "Docker", "AWS ECS", "Vercel"],
+      "shortDescription": "A production-ready school management system with role-based dashboards for Admin, Teacher, and Student — covering attendance, assignments, exams, report cards, and timetables.",
+      "fullDescription": "EduManage is a complete institutional management platform built with a FastAPI backend and Next.js frontend, deployed on AWS ECS with PostgreSQL on RDS. The system implements a strict role-based access control architecture with three distinct user roles — Admin, Teacher, and Student — each with a dedicated dashboard and scoped permissions enforced at the API level via JWT middleware dependencies (require_admin, require_teacher, require_any). The Admin controls the entire system: creating teacher and student accounts (which automatically provision login credentials), managing classes, subjects, timetable, and notices, and accessing a live dashboard with real-time attendance and enrollment statistics. Teachers can mark bulk class attendance, create and grade assignments, enter exam marks per subject, and post notices. Students access their own attendance calendar with monthly breakdowns and eligibility status, view assignments filtered to their class, submit work online, and generate report cards with per-subject percentage breakdowns and auto-calculated letter grades (A+ through F).  School data is isolated in a dedicated PostgreSQL database. ",
+      "github": "https://github.com/AADARSHA875",
+      "demo": "https://school-management-system-woad-theta.vercel.app",
+      "color": "from-orange-500 to-amber-500",
+      "featured": true,
+      "architecture": {
+        "backend": "FastAPI + SQLAlchemy + PostgreSQL (schooldb isolated)",
+        "frontend": "Next.js Pages Router + withAuth HOC",
+        "auth": "JWT (python-jose) + bcrypt, cross-database lookup",
+        "deployment": "AWS ECS + ECR + ALB (API), Vercel (UI), AWS RDS (DB)",
+        "rbac": "require_admin / require_teacher / require_any FastAPI dependencies",
+        "userProvisioning": "Admin-only account creation with auto-generated credentials"
+      },
+      "metrics": {
+        "roles": ["Admin", "Teacher", "Student"],
+        "modules": ["Attendance", "Assignments", "Submissions", "Exams", "Marks", "Report Cards", "Notices", "Timetable"],
+        "grading": ["A+ (90-100)", "A (80-89)", "B+ (70-79)", "B (60-69)", "C (50-59)", "D (40-49)", "F (<40)"],
+        "attendance": ["Bulk daily marking", "Monthly calendar view", "75% eligibility check", "Percentage report"]
+      },
+      "useCases": [
+        "School and college administration management",
+        "Teacher attendance and grading workflows",
+        "Student academic progress tracking",
+        "Institutional notice board and communication",
+        "Weekly class timetable management",
+        "Automated report card generation"
+      ],
+      "technicalStack": [
+        "FastAPI (Python)",
+        "Next.js 13+ (React Pages Router)",
+        "PostgreSQL 14 on AWS RDS",
+        "SQLAlchemy ORM",
+        "JWT (python-jose) + bcrypt",
+        "Docker + AWS ECS + ECR + ALB",
+        "Vercel (Frontend Hosting)",
+        "Pydantic v2 (Schema Validation)"
+      ],
+      "keyFeatures": [
+        "✅ Role-based dashboards — Admin, Teacher, Student with separate permissions",
+        "✅ Auto user provisioning — creating a teacher/student auto-creates login credentials",
+        "✅ Bulk attendance marking with monthly calendar and eligibility tracking",
+        "✅ Assignment submission and grading workflow end-to-end",
+        "✅ Exam marks entry with auto-generated report cards and letter grades",
+        "✅ Cross-database JWT auth — schooldb isolated from other projects",
+        "✅ Seed script — populates 42 students, 6 teachers, 8 semesters in one run",
+        "✅ Production deployment on AWS ECS + RDS + Vercel"
+      ]
+    },
+    {
+      "icon": "FileText",
+      "name": "Hybrid:Text Summarizer",
+      "tags": ["NLP", "Transformers", "BART", "DistilRoBERTa", "BERTScore", "Hugging Face"],
+      "shortDescription": "A sophisticated hybrid summarization system combining extractive scoring with abstractive generation for high-quality, factually accurate text summaries.",
+      "fullDescription": "An advanced text summarization system that leverages a two-stage pipeline for generating concise, factually accurate summaries from long-form text. The system first uses a fine-tuned DistilRoBERTa model to score and extract the most important sentences, then employs a fine-tuned BART model to generate novel, fluent summaries with adaptive parameters based on input length. Key features include intelligent chunking with configurable overlap, length-adaptive generation parameters (beam search, token limits, repetition penalties), comprehensive fact verification to minimize hallucinations, and extensive post-processing for readability. Built with PyTorch and Hugging Face Transformers, the system handles texts ranging from short paragraphs to long documents. Built-in evaluation computes ROUGE, BERTScore, coverage metrics, novelty scores, and fact verification, providing detailed performance insights. The system maintains deterministic behavior through seeded randomness for reproducible results.",
+      "github": "https://github.com/your-repo/hybrid-summarizer", // Add your GitHub repo link here
+      "demo": "", // Optional: Add demo link if available
+      "color": "from-blue-500 to-purple-500",
+      "featured": true,
+
+    },
 
 
 
@@ -47,6 +115,9 @@ const ProjectsPage = forwardRef((props, ref) => {
       color: "from-rose-500 to-pink-500",
       featured: true
     },
+
+
+
     {
       icon: Music,
       name: "MoodMate",
@@ -135,8 +206,23 @@ const ProjectsPage = forwardRef((props, ref) => {
       ref={ref}
       className="min-h-screen px-4 sm:px-8 py-16 mx-auto max-w-7xl font-inter bg-white dark:bg-gray-900 dark:text-white transition-colors duration-300"
     >
+      {/* FIXED: Header is now inside the return block */}
+      <div className="text-center mb-16">
+        <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
+          <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            Featured Projects
+          </span>
+        </h2>
+        <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed">
+          A collection of <strong>AI-driven applications</strong> and <strong>full-stack systems</strong> built to solve real-world challenges through intelligent automation.
+        </p>
 
-
+        {/* Animated Underline */}
+        <div className="relative mt-8">
+          <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto rounded-full animate-scaleX"></div>
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-48 h-1 bg-blue-600/10 blur-md rounded-full"></div>
+        </div>
+      </div>
 
       {/* Projects Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -147,22 +233,17 @@ const ProjectsPage = forwardRef((props, ref) => {
               key={idx}
               className="group relative bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
             >
-
               {/* Project Header */}
               <div className="flex items-start gap-4 mb-4">
-                {/* Icon */}
                 <div className={`p-3 rounded-xl bg-gradient-to-r ${project.color} shadow-lg group-hover:scale-110 transition-transform duration-300 flex-shrink-0`}>
                   <IconComponent className="w-6 h-6 text-white" />
                 </div>
 
-                {/* Title and Tags Container - Modified for better badge handling */}
                 <div className="flex-1 min-w-0">
                   <div className="flex items-start justify-between gap-2">
                     <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-purple-600 transition-all duration-300 flex-1">
                       {project.name}
                     </h3>
-
-                    {/* Featured Badge - Now positioned with flexbox instead of absolute */}
                     {project.featured && (
                       <div className="flex-shrink-0">
                         <div className="flex items-center gap-1 bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-3 py-1 rounded-full text-sm font-medium whitespace-nowrap">
@@ -173,7 +254,6 @@ const ProjectsPage = forwardRef((props, ref) => {
                     )}
                   </div>
 
-                  {/* Tags */}
                   <div className="flex flex-wrap gap-2">
                     {project.tags.map((tag, i) => (
                       <span key={i} className="text-xs px-2.5 py-1 bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full border border-gray-200 dark:border-gray-600">
@@ -184,17 +264,12 @@ const ProjectsPage = forwardRef((props, ref) => {
                 </div>
               </div>
 
-
-
-
-              {/* Project Description */}
               <div className="mb-6">
                 <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
-                  {expandedProject === idx ? project.fullDescription : `${project.shortDescription}`}
+                  {expandedProject === idx ? project.fullDescription : project.shortDescription}
                 </p>
               </div>
 
-              {/* Action Buttons */}
               <div className="flex justify-between items-center">
                 <button
                   onClick={() => toggleExpand(idx)}
@@ -206,38 +281,23 @@ const ProjectsPage = forwardRef((props, ref) => {
 
                 <div className="flex gap-3">
                   {project.github && (
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-2 bg-gray-200 dark:bg-gray-700 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors group/btn"
-                      aria-label="View code on GitHub"
-                    >
+                    <a href={project.github} target="_blank" rel="noopener noreferrer" className="p-2 bg-gray-200 dark:bg-gray-700 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors group/btn">
                       <Github size={18} className="text-gray-700 dark:text-gray-300 group-hover/btn:text-gray-900 dark:group-hover/btn:text-white transition-colors" />
                     </a>
                   )}
                   {project.demo && (
-                    <a
-                      href={project.demo}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-2 bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 rounded-lg transition-all duration-300 transform hover:scale-110 shadow-lg group/btn"
-                      aria-label="View live demo"
-                    >
+                    <a href={project.demo} target="_blank" rel="noopener noreferrer" className="p-2 bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 rounded-lg transition-all duration-300 transform hover:scale-110 shadow-lg group/btn">
                       <ExternalLink size={18} className="text-white" />
                     </a>
                   )}
                 </div>
               </div>
-
-              {/* Hover Effect Border */}
               <div className={`absolute inset-0 rounded-2xl bg-gradient-to-r ${project.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300 pointer-events-none`}></div>
             </div>
           );
         })}
       </div>
 
-      {/* Bottom CTA */}
       <div className="text-center mt-16">
         <div className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/20 dark:to-purple-900/20 rounded-full border border-blue-200/50 dark:border-blue-700/50">
           <Github size={20} className="text-blue-600 dark:text-blue-400" />
@@ -245,7 +305,6 @@ const ProjectsPage = forwardRef((props, ref) => {
         </div>
       </div>
 
-      {/* Inline CSS for underline animation */}
       <style jsx>{`
         @keyframes scaleX {
           0% { transform: scaleX(0); }

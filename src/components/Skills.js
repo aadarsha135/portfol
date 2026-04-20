@@ -6,25 +6,25 @@ const Skills = () => {
       title: "Frontend Development",
       icon: Code,
       gradient: "from-blue-500 to-cyan-500",
-      skills: ["HTML", "CSS", "Tailwind CSS", "JavaScript", "React"]
+      skills: ["React / Next.js", "Tailwind CSS", "State Management", "JavaScript )", "Responsive UI/UX"]
     },
     {
       title: "Backend Development",
       icon: Server,
       gradient: "from-purple-500 to-pink-500",
-      skills: ["Django", "Flask", "Node.js", "FastAPI", "REST APIs"]
+      skills: ["FastAPI", "Django (DRF)", "PostgreSQL", "RESTful APIs", "JWT Auth / OAuth2"]
     },
     {
       title: "AI & Machine Learning",
       icon: Cpu,
       gradient: "from-green-500 to-teal-500",
-      skills: ["Python", "TensorFlow", "PyTorch", "NLP", "Data Analysis"]
+      skills: ["Python", "Transformers", "NLP / RAG Pipelines", "PyTorch", "LLM Orchestration"]
     },
     {
       title: "Tools & Technologies",
       icon: Wrench,
       gradient: "from-orange-500 to-red-500",
-      skills: ["Git", "Linux", "Render", "Github Pages"]
+      skills: ["Docker ", "AWS (ECS, RDS) ", "Linux", "Git"]
     }
   ];
 
@@ -38,7 +38,7 @@ const Skills = () => {
           </span>
         </h2>
         <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-          A snapshot of my technical expertise across frontend, backend, AI/ML, and essential development tools.
+          A snapshot of my evolving expertise across frontend, backend, AI/ML, and cloud-ready development tools.
         </p>
         <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto mt-8 rounded-full"></div>
       </div>
@@ -46,10 +46,10 @@ const Skills = () => {
       {/* Stats Overview */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
         {[
-          { icon: Code, label: 'Languages', count: '6+' },
-          { icon: Wrench, label: 'Frameworks', count: '5+' },
+          { icon: Code, label: 'Languages', count: '8+' },
+          { icon: Wrench, label: 'Frameworks', count: '10+' },
           { icon: TrendingUp, label: 'Years Learning', count: '3+' },
-          { icon: Award, label: 'Projects', count: '8+' }
+          { icon: Award, label: 'Projects', count: '15+' }
         ].map((stat, index) => {
           const IconComponent = stat.icon;
           return (
@@ -100,7 +100,7 @@ const Skills = () => {
         <div className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-blue-500/10 to-purple-500/10 backdrop-blur-sm border border-blue-200/20 dark:border-blue-700/20 rounded-2xl">
           <TrendingUp className="text-blue-600 dark:text-blue-400" size={24} />
           <span className="text-gray-700 dark:text-gray-300 font-medium">
-            Constantly learning and building real AI/ML and web projects
+            Active practitioner building real-world AI/ML and full-stack solutions
           </span>
         </div>
       </div>
