@@ -1,6 +1,7 @@
 import { Analytics } from '@vercel/analytics/react';
 import { useEffect, useState } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { Analytics } from '@vercel/analytics/react';
 import AboutPage from './components/About';
 import ContactPage from './components/Contact';
 import Footer from './components/Footer';
