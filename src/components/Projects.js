@@ -1,4 +1,4 @@
-import { Book, ChevronDown, ChevronUp, Edit3, ExternalLink, FileText, Github, HelpCircle, Layers, Mail, MessageCircle, Music, Star } from 'lucide-react';
+import { Book, ChevronDown, ChevronUp, Edit3, ExternalLink, FileText, Github, HelpCircle, Layers, Mail, Music, Star } from 'lucide-react';
 import { forwardRef, useState } from 'react';
 
 const ProjectsPage = forwardRef((props, ref) => {
