@@ -31,7 +31,7 @@ const ProjectsPage = forwardRef((props, ref) => {
 
       fullDescription: "MultiMind is a full-stack AI research assistant built using an orchestrated multi-agent architecture designed to transform complex information workflows into a single intelligent experience.Instead of exposing isolated AI tools, MultiMind introduces an orchestration layer that dynamically coordinates multiple specialized agents based on user intent such as researching a topic, learning concepts, writing articles, exploring questions, or getting quick answers.The system begins when a user submits a query through a unified interface. A central Orchestration Engine determines the appropriate execution pipeline and automatically activates the required agents.The Research Agent performs semantic search over a MongoDB knowledge base containing thousands of curated research documents to retrieve contextually relevant information.The Curation Agent analyzes retrieved content and assigns structured topic tags, improving organization and contextual understanding.The Summarization Agent condenses long documents into concise, information-dense summaries while preserving key insights.The RAG (Retrieval-Augmented Generation) Agent generates fact-grounded answers strictly based on retrieved sources, ensuring reliability and reducing hallucinations.The Question Generation Agent produces intelligent follow-up questions, enabling deeper topic exploration similar to a “People Also Asked” experience.Finally, the Writing Agent synthesizes summaries, tags, and verified answers into polished, human-readable articles suitable for learning or publishing.A dedicated orchestration layer manages agent sequencing, pipeline routing, and response aggregation, transforming multiple AI components into a cohesive knowledge assistant rather than a collection of tools.Built with a Django backend and React frontend, MultiMind demonstrates scalable multi-agent system design, modular AI architecture, and real-world Retrieval-Augmented Generation workflows.",
 
-      github: "",
+      github: "https://github.com/AADARSHA875/multimind_project.git",
       demo: "",
       color: "from-blue-500 to-cyan-500",
       featured: true
@@ -42,7 +42,7 @@ const ProjectsPage = forwardRef((props, ref) => {
       "tags": ["FastAPI", "Next.js", "PostgreSQL", "JWT", "SQLAlchemy", "Docker", "AWS ECS", "Vercel"],
       "shortDescription": "A production-ready school management system with role-based dashboards for Admin, Teacher, and Student — covering attendance, assignments, exams, report cards, and timetables.",
       "fullDescription": "EduManage is a complete institutional management platform built with a FastAPI backend and Next.js frontend, deployed on AWS ECS with PostgreSQL on RDS. The system implements a strict role-based access control architecture with three distinct user roles — Admin, Teacher, and Student — each with a dedicated dashboard and scoped permissions enforced at the API level via JWT middleware dependencies (require_admin, require_teacher, require_any). The Admin controls the entire system: creating teacher and student accounts (which automatically provision login credentials), managing classes, subjects, timetable, and notices, and accessing a live dashboard with real-time attendance and enrollment statistics. Teachers can mark bulk class attendance, create and grade assignments, enter exam marks per subject, and post notices. Students access their own attendance calendar with monthly breakdowns and eligibility status, view assignments filtered to their class, submit work online, and generate report cards with per-subject percentage breakdowns and auto-calculated letter grades (A+ through F).  School data is isolated in a dedicated PostgreSQL database. ",
-      "github": "https://github.com/AADARSHA875",
+      "github": "https://github.com/AADARSHA875/School_Management_System.git",
       "demo": "https://edu.aadarshachaulagain.com.np/",
       "color": "from-orange-500 to-amber-500",
       "featured": true,
@@ -94,27 +94,68 @@ const ProjectsPage = forwardRef((props, ref) => {
       "name": "Hybrid:Text Summarizer",
       "tags": ["NLP", "Transformers", "BART", "DistilRoBERTa", "BERTScore", "Hugging Face"],
       "shortDescription": "A sophisticated hybrid summarization system combining extractive scoring with abstractive generation for high-quality, factually accurate text summaries.",
-      "fullDescription": "An advanced text summarization system that leverages a two-stage pipeline for generating concise, factually accurate summaries from long-form text. The system first uses a fine-tuned DistilRoBERTa model to score and extract the most important sentences, then employs a fine-tuned BART model to generate novel, fluent summaries with adaptive parameters based on input length. Key features include intelligent chunking with configurable overlap, length-adaptive generation parameters (beam search, token limits, repetition penalties), comprehensive fact verification to minimize hallucinations, and extensive post-processing for readability. Built with PyTorch and Hugging Face Transformers, the system handles texts ranging from short paragraphs to long documents. Built-in evaluation computes ROUGE, BERTScore, coverage metrics, novelty scores, and fact verification, providing detailed performance insights. The system maintains deterministic behavior through seeded randomness for reproducible results.",
-      "github": "https://github.com/AADARSHA875/text_summarizer.git", // Add your GitHub repo link here
+      "fullDescription": "A hybrid deep learning text summarization system built on a two-stage Filter-then-Generate pipeline. In the first stage, a fine-tuned DistilRoBERTa model performs binary sentence classification to score and extract the most summary-worthy sentences from the source document using a greedy labelling strategy, while an SBERT-based semantic filtering module (all-MiniLM-L6-v2) re-ranks these sentences using cosine similarity to the full document embedding, ensuring only the most contextually relevant content is passed forward. In the second stage, a fine-tuned BART-Large model rewrites the filtered sentences into fluent, coherent, and factually grounded abstractive summaries. A custom hybrid dataset of 18,000 training and 2,000 validation samples was constructed and published on Hugging Face Hub. The deployed system supports both direct text input and PDF upload, with a graphical interface that displays compression statistics alongside the generated summary.",      "github": "https://github.com/AADARSHA875/text_summarizer.git", // Add your GitHub repo link here
       "demo": "https://text-summarizer-green.vercel.app/", // Optional: Add demo link if available
       "color": "from-blue-500 to-purple-500",
       "featured": true,
 
     },
-
-
-
     {
-      icon: FileText,
-      name: "EchoSum: AI-Powered Audio Transcription & Summarization",
-      tags: ["Django", "Celery", "Whisper AI", "MongoDB", "Redis"],
-      shortDescription: "An AI-powered system that transcribes, summarizes, and organizes uploaded audio content with intelligent processing.",
-      fullDescription: "EchoSum is an AI- powered system that transcribes, summarizes, and organizes audio recordings through an intuitive upload - and - process workflow.Users manually upload audio files(lectures, podcasts, interviews, meetings), then trigger processing to generate speaker - aware transcripts and concise executive summaries with key points.The system leverages OpenAI's Whisper for accurate speech-to-text conversion with timestamps, and all-mpnet-base-v2 for text embeddings. Built with Django REST framework and Celery for asynchronous task processing, it efficiently handles long audio files in the background. Transcripts and summaries are stored in MongoDB for later retrieval, with Redis serving as the message broker. The pipeline—from upload to transcription to summarization—delivers structured, searchable insights on demand.",
-      github: "https://github.com/AADARSHA875/EchoSum.git",
-      demo: "",
-      color: "from-rose-500 to-pink-500",
-      featured: true
-    },
+  icon: FileText,
+  name: "EchoSum: AI-Powered Audio Transcription & Summarization Platform",
+
+  tags: [
+    "Django REST",
+    "Celery",
+    "Redis",
+    "MongoDB",
+    "Whisper",
+    "BART",
+    "DistilRoBERTa",
+    "Sentence Transformers",
+    "Async Processing",
+    "NLP"
+  ],
+
+  shortDescription:
+    "An AI-powered platform that transcribes, summarizes, and organizes long-form audio content using asynchronous NLP pipelines.",
+
+  fullDescription: `
+EchoSum is a scalable AI-powered audio intelligence platform designed to automate the transcription, summarization, and organization of long-form audio content such as lectures, podcasts, interviews, meetings, and seminars.
+
+The system allows users to upload audio files through a Django REST API, after which asynchronous background pipelines process the content using Celery and Redis. OpenAI Whisper is used for high-accuracy speech-to-text transcription with timestamps, enabling the generation of structured and searchable transcripts.
+
+For the summarization phase, EchoSum integrates my own fine-tuned Hybrid Text Summarization model built on a two-stage extractive + abstractive pipeline. The system first applies a fine-tuned DistilRoBERTa sentence-ranking model to identify the most information-dense transcript segments, followed by semantic filtering using all-mpnet-base-v2 embeddings and cosine similarity scoring. The filtered transcript chunks are then passed into a fine-tuned BART-Large model that generates concise, coherent, and factually grounded executive summaries and key discussion points.
+
+MongoDB is used to store transcripts, summaries, metadata, and embeddings for scalable retrieval and future semantic search capabilities. The architecture was designed to efficiently handle long-duration audio files without blocking API requests by offloading heavy inference tasks to distributed background workers.
+
+The project demonstrates practical implementation of asynchronous AI pipelines, speech-to-text systems, custom NLP summarization workflows, vector-based semantic processing, and scalable backend architecture for real-world AI applications.
+`,
+
+  github: "https://github.com/AADARSHA875/EchoSum.git",
+
+  demo: "",
+
+  color: "from-rose-500 to-pink-500",
+
+  featured: true,
+
+  architecture: {
+    backend: "Django REST Framework",
+    asyncProcessing: "Celery + Redis",
+    database: "MongoDB",
+    transcription: "OpenAI Whisper",
+    summarization: "Custom Hybrid Summarizer (DistilRoBERTa + BART-Large)",
+    embeddings: "all-mpnet-base-v2",
+    storage: "Transcript + Summary + Embedding Storage"
+  },
+
+ 
+},
+
+
+
+ 
 
 
 
@@ -129,40 +170,29 @@ const ProjectsPage = forwardRef((props, ref) => {
       color: "from-orange-500 to-red-500",
       featured: true
     },
-    {
-      icon: MessageCircle,
-      name: "DeepScript: Context-Aware Screenplay Dialogue Generator",
-      tags: ["GPT-2", "Emotion Analysis", "React", "Django", "NLP"],
-      shortDescription: "A full-stack dialogue generation and emotion analysis system combining multiple deep learning models.",
-      fullDescription: `DeepScript is a full-stack dialogue generation and emotion analysis system that combines multiple deep learning models into a single platform. I fine-tuned GPT-2 on a hybrid dataset of screenplays and Cornell dialogues to generate context-aware conversations, and fine-tuned another GPT-2 variant on emotion-tagged dialogues to produce emotionally driven outputs. Additionally, I utilized an emotion detection model fine tuned by myself to annotate over 300,000 dialogues from the Cornell Movie-Dialogs Corpus. The pipeline spans data preparation, fine-tuning, and deployment into a React frontend with a Django backend. Through this project, I learned how to combine diverse datasets for richer model performance, train specialized models for complementary NLP tasks, and bridge the gap between raw model training and real-world full-stack deployment.`,
-      github: "https://github.com/AADARSHA875/DEEPSCRIPT_WITH_DIALOGUE_GENERATION.git",
+    // {
+    //   icon: MessageCircle,
+    //   name: "DeepScript: Context-Aware Screenplay Dialogue Generator",
+    //   tags: ["GPT-2", "Emotion Analysis", "React", "Django", "NLP"],
+    //   shortDescription: "A full-stack dialogue generation and emotion analysis system combining multiple deep learning models.",
+    //   fullDescription: `DeepScript is a full-stack dialogue generation and emotion analysis system that combines multiple deep learning models into a single platform. I fine-tuned GPT-2 on a hybrid dataset of screenplays and Cornell dialogues to generate context-aware conversations, and fine-tuned another GPT-2 variant on emotion-tagged dialogues to produce emotionally driven outputs. Additionally, I utilized an emotion detection model fine tuned by myself to annotate over 300,000 dialogues from the Cornell Movie-Dialogs Corpus. The pipeline spans data preparation, fine-tuning, and deployment into a React frontend with a Django backend. Through this project, I learned how to combine diverse datasets for richer model performance, train specialized models for complementary NLP tasks, and bridge the gap between raw model training and real-world full-stack deployment.`,
+    //   github: "https://github.com/AADARSHA875/DEEPSCRIPT_WITH_DIALOGUE_GENERATION.git",
 
-      color: "from-purple-500 to-pink-500",
-      featured: true
-    },
+    //   color: "from-purple-500 to-pink-500",
+    //   featured: true
+    // },
     {
       icon: Book,
       name: "Book Recommender",
       tags: ["Django", "Hybrid ML", "Collaborative Filtering", "Content-Based", "TF-IDF"],
       shortDescription: "A sophisticated hybrid book recommendation engine combining four different ML approaches for personalized suggestions.",
       fullDescription: `Developed a comprehensive hybrid book recommendation system that combines four distinct recommendation strategies: ratings-based collaborative filtering, category-based similarity, audience-age matching, and content-based TF-IDF analysis on book summaries. Built with Django, the system features user authentication, personalized genre selection during onboarding, and fuzzy string matching for typo-tolerant searches. The recommendation pipeline processes user queries through parallel algorithms, weights the results, and returns deduplicated suggestions with book cover images. Key technical implementations include TF-IDF vectorization for text features, cosine similarity calculations and session-based recommendation storage. The platform offers multiple browsing modes (ratings, category, age, content) and maintains search history for authenticated users, delivering a robust, production-ready book discovery experience.`,
-      github: "",
+      github: "https://github.com/AADARSHA875/book.git",
       demo: "",
       color: "from-amber-500 to-yellow-500",
       featured: true
     },
-    {
-      icon: FileText,
-      name: "SmartDoc Q&A",
-      tags: ["RAG", "Vector DB", "Embeddings"],
-      shortDescription: "A Retrieval-Augmented Generation system for intelligent question answering.",
-      fullDescription: `Developed a Retrieval-Augmented Generation (RAG) system that intelligently answers user questions by retrieving relevant information from a custom knowledge base. This system employs advanced embedding techniques for efficient similarity search and a large language model for synthesizing coherent and contextually relevant answers.`,
-      github: "https://github.com/AADARSHA875/RAG-project.git",
-
-      color: "from-emerald-500 to-green-500",
-      featured: true
-    },
-    {
+        {
       icon: Edit3,
       name: "Shakespearean Text Generator (Character-Level GRU)",
       tags: ["TensorFlow", "Keras", "GRU", "NLP"],
@@ -173,6 +203,18 @@ const ProjectsPage = forwardRef((props, ref) => {
       color: "from-green-500 to-teal-500",
       featured: true,
     },
+    {
+      icon: FileText,
+      name: "SmartDoc Q&A",
+      tags: ["RAG", "Vector DB", "Embeddings"],
+      shortDescription: "A Retrieval-Augmented Generation system for intelligent question answering.",
+      fullDescription: `Developed a Retrieval-Augmented Generation (RAG) system that intelligently answers user questions by retrieving relevant information from a custom knowledge base. This system employs advanced embedding techniques for efficient similarity search and a large language model for synthesizing coherent and contextually relevant answers.`,
+      github: "https://github.com/AADARSHA875/RAG-project.git",
+
+      color: "from-emerald-500 to-green-500",
+      featured: false
+    },
+
 
     {
       icon: Mail,
